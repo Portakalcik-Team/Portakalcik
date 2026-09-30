@@ -8,14 +8,21 @@ namespace Portakalcik
         public float damage = 3.0f;
         public float lifetime = 5.0f;
 
+        private Vector3 moveDirection;
+
         private void Start()
         {
+            Rigidbody rb = GetComponent<Rigidbody>();
+            if (rb != null)
+            {
+                moveDirection = rb.linearVelocity.normalized;
+            }
             Destroy(gameObject, lifetime);
         }
 
         private void OnCollisionEnter(Collision collision)
         {
-            // Canavara çarptıysa hasar ver
+            // Canavara çarptıysa hasar ver ve geriye it
             Enemy enemy = collision.gameObject.GetComponent<Enemy>();
             if (enemy == null)
             {
@@ -24,10 +31,17 @@ namespace Portakalcik
 
             if (enemy != null)
             {
-                enemy.TakeDamage(damage);
+                Vector3 knockback = moveDirection != Vector3.zero ? moveDirection : transform.forward;
+                enemy.TakeDamage(damage, knockback);
+
+                // Oyuncuya vuruş hissiyatı (Hit Marker) ver
+                PlayerController pc = Object.FindAnyObjectByType<PlayerController>();
+                if (pc != null)
+                {
+                    pc.TriggerHitFeedback();
+                }
             }
 
-            // Çarpışmada yok ol
             Destroy(gameObject);
         }
     }
