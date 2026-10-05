@@ -11,6 +11,33 @@ Bu belge Harita 5'in ders haftalarına yayılan küçük ve gösterilebilir adı
 Duvarlar Unity sahnesine normal GameObject olarak elle eklenir. Bu haftada otomatik
 harita üretme kodu, oynanış kodu, canavar, ağaç, kapı, ses veya final görselleri yoktur.
 
+## 2. hafta — Spiral labirent + ilk scriptler (W02)
+
+### Labirent
+- 1. haftanın 4 duvarı yerinde kaldı ve spiralin merkezi oldu. Spiral bu duvarlardan dışa doğru büyüdü.
+- Zemin 36×36 m'ye büyütüldü. Halkalar arası 4,5 m; koridorlar 3,5 m geniş, duvarlar 3 m yüksek.
+- Dış halkaların köşeleri 45° kırık, böylece spiral yuvarlağa yakın görünür.
+- Giriş sağ üst köşede. Alt halkadaki boşluk doğru yol; spirali dolaşmaya devam etmek çıkmaza gider.
+
+### Scriptler (`Assets/Project/Scripts/Map5/`)
+| Script | Nerede | Ne yapar |
+|---|---|---|
+| `Map5Spinner` | 3 meyvenin `Visual` çocuğu | Kendi etrafında döner (saniyede 90°, `Time.deltaTime`) |
+| `Map5Bobber` | 3 meyvenin `Visual` çocuğu | Yukarı aşağı süzülür (`Time.time` ile), hızları 2 / 1,6 / 2,4 |
+| `Map5Patroller` | `Tehlike_Devriye_01` | A ile B noktası arasında gidip gelir, alt boşluğun önünden geçer |
+| `Map5PlayerMover` | `Oyuncu` | Geçici oyuncu kutusu W A S D ile yürür, duvarlardan geçemez |
+
+- Hareket eden her nesne boş bir kök + `Visual` çocuk şeklinde kuruldu (3. haftada köke fizik gelecek).
+- Tehlikenin B noktası tehlikenin çocuğu değil, `Tehlikeler` altında ayrı bir boş nesne.
+
+### Fiiller (Verbs)
+| Fiil | Karşılaştığı şeyler |
+|---|---|
+| yürü | duvarlar, çıkmaz yollar, devriye tehlikesi |
+| topla | mandalina, portakal, limon |
+| at (mandalina) | Diken Böceği, Yarasa, Tilki |
+| aç | kısayol kapısı, çıkış kapısı, Kök Golemi'nin kısayolu |
+
 ## Sonraki haftalar
 
 | Hafta | Eklenecek ayrıntı |
