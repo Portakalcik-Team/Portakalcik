@@ -1,5 +1,5 @@
 using UnityEngine;
-public class Bobber : MonoBehaviour
+public class Map10_Boober : MonoBehaviour
 {
 [SerializeField] private float bobHeight = 0.25f; // metres up and down
 [SerializeField] private float bobSpeed = 2f; // how fast it floats
