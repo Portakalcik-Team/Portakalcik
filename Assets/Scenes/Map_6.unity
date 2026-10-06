@@ -467,6 +467,7 @@ GameObject:
   - component: {fileID: 109843499}
   - component: {fileID: 109843498}
   - component: {fileID: 109843497}
+  - component: {fileID: 109843500}
   m_Layer: 0
   m_Name: Agac_Limon_1_4
   m_TagString: Untagged
@@ -569,6 +570,22 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 109843495}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &109843500
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 109843495}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7453e8efb604a44a8a16c0b7bf27b1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Portakalcik.FruitTree
+  treeType: 2
+  fruitYield: 2
+  isHarvested: 0
+  interactDistance: 3.5
 --- !u!1 &120869003
 GameObject:
   m_ObjectHideFlags: 0
@@ -3284,6 +3301,7 @@ GameObject:
   - component: {fileID: 677061310}
   - component: {fileID: 677061309}
   - component: {fileID: 677061308}
+  - component: {fileID: 677061311}
   m_Layer: 0
   m_Name: Agac_Limon_7_6
   m_TagString: Untagged
@@ -3386,6 +3404,22 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 677061306}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &677061311
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 677061306}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7453e8efb604a44a8a16c0b7bf27b1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Portakalcik.FruitTree
+  treeType: 2
+  fruitYield: 2
+  isHarvested: 0
+  interactDistance: 3.5
 --- !u!1 &697463063
 GameObject:
   m_ObjectHideFlags: 0
@@ -3885,6 +3919,7 @@ GameObject:
   - component: {fileID: 807594571}
   - component: {fileID: 807594570}
   - component: {fileID: 807594569}
+  - component: {fileID: 807594572}
   m_Layer: 0
   m_Name: Kapi_7_3
   m_TagString: Untagged
@@ -3985,6 +4020,21 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 807594567}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &807594572
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 807594567}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 367a951957a23c34a91c88bf9f73015a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Portakalcik.Door
+  isOpen: 0
+  openSpeed: 3
+  sinkDistance: 3.2
 --- !u!1 &828947745
 GameObject:
   m_ObjectHideFlags: 0
@@ -4221,6 +4271,7 @@ GameObject:
   - component: {fileID: 885985955}
   - component: {fileID: 885985954}
   - component: {fileID: 885985953}
+  - component: {fileID: 885985956}
   m_Layer: 0
   m_Name: Canavar_DikenBocegi_5_6
   m_TagString: Untagged
@@ -4323,6 +4374,32 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 885985951}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &885985956
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 885985951}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b691cf4daf04bf47a69211740df31bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Portakalcik.Enemy
+  enemyType: 0
+  monsterName: "Diken B\xF6ce\u011Fi"
+  maxHealth: 11
+  currentHealth: 11
+  attackDamage: 9
+  attackCooldown: 2
+  moveSpeed: 2.4
+  detectionRadius: 9
+  alertReactionTime: 1.5
+  maxChaseDistance: 14
+  attackRadius: 1.6
+  guardedDoor: {fileID: 1449782605}
+  awareness: 0
+  isAlerted: 0
 --- !u!1 &899422830
 GameObject:
   m_ObjectHideFlags: 0
@@ -4671,6 +4748,7 @@ GameObject:
   - component: {fileID: 961274116}
   - component: {fileID: 961274115}
   - component: {fileID: 961274114}
+  - component: {fileID: 961274117}
   m_Layer: 0
   m_Name: Agac_Mandalina_5_10
   m_TagString: Untagged
@@ -4773,6 +4851,22 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 961274112}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &961274117
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 961274112}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7453e8efb604a44a8a16c0b7bf27b1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Portakalcik.FruitTree
+  treeType: 0
+  fruitYield: 11
+  isHarvested: 0
+  interactDistance: 3.5
 --- !u!1 &982092888
 GameObject:
   m_ObjectHideFlags: 0
@@ -4897,6 +4991,7 @@ GameObject:
   - component: {fileID: 997380206}
   - component: {fileID: 997380205}
   - component: {fileID: 997380204}
+  - component: {fileID: 997380207}
   m_Layer: 0
   m_Name: Canavar_GolgeYarasa_3_2
   m_TagString: Untagged
@@ -4999,6 +5094,32 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 997380202}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &997380207
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 997380202}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b691cf4daf04bf47a69211740df31bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Portakalcik.Enemy
+  enemyType: 1
+  monsterName: "G\xF6lge Yarasa"
+  maxHealth: 14
+  currentHealth: 14
+  attackDamage: 11
+  attackCooldown: 1
+  moveSpeed: 7.2
+  detectionRadius: 9
+  alertReactionTime: 1.5
+  maxChaseDistance: 14
+  attackRadius: 1.6
+  guardedDoor: {fileID: 1568125779}
+  awareness: 0
+  isAlerted: 0
 --- !u!1 &1028726384
 GameObject:
   m_ObjectHideFlags: 0
@@ -5459,6 +5580,7 @@ GameObject:
   - component: {fileID: 1085947424}
   - component: {fileID: 1085947423}
   - component: {fileID: 1085947422}
+  - component: {fileID: 1085947425}
   m_Layer: 0
   m_Name: Canavar_GolgeYarasa_7_2
   m_TagString: Untagged
@@ -5561,6 +5683,32 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1085947420}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1085947425
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1085947420}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b691cf4daf04bf47a69211740df31bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Portakalcik.Enemy
+  enemyType: 1
+  monsterName: "G\xF6lge Yarasa"
+  maxHealth: 14
+  currentHealth: 14
+  attackDamage: 11
+  attackCooldown: 1
+  moveSpeed: 7.2
+  detectionRadius: 9
+  alertReactionTime: 1.5
+  maxChaseDistance: 14
+  attackRadius: 1.6
+  guardedDoor: {fileID: 807594572}
+  awareness: 0
+  isAlerted: 0
 --- !u!1 &1092177284
 GameObject:
   m_ObjectHideFlags: 0
@@ -6357,6 +6505,7 @@ GameObject:
   - component: {fileID: 1208774418}
   - component: {fileID: 1208774417}
   - component: {fileID: 1208774416}
+  - component: {fileID: 1208774419}
   m_Layer: 0
   m_Name: Agac_Limon_9_4
   m_TagString: Untagged
@@ -6459,6 +6608,22 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1208774414}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1208774419
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1208774414}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7453e8efb604a44a8a16c0b7bf27b1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Portakalcik.FruitTree
+  treeType: 2
+  fruitYield: 2
+  isHarvested: 0
+  interactDistance: 3.5
 --- !u!1 &1210982520
 GameObject:
   m_ObjectHideFlags: 0
@@ -7759,6 +7924,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Portakalcik.PlayerController
   maxHealth: 100
   currentHealth: 100
+  mandalinaCount: 6
+  portakalCount: 0
+  limonCount: 0
   walkSpeed: 6
   sprintSpeed: 9
   jumpForce: 5
@@ -7766,7 +7934,13 @@ MonoBehaviour:
   cameraHolder: {fileID: 1552788486}
   mouseSensitivity: 0.15
   verticalLookLimit: 85
-  showHUD: 1
+  shootCooldown: 0.35
+  projectileSpeed: 24
+  requiredHoldTime: 1.2
+  parTime: 270
+  elapsedTime: 0
+  isLevelComplete: 0
+  isGameOver: 0
 --- !u!143 &1419848347
 CharacterController:
   m_ObjectHideFlags: 0
@@ -8044,6 +8218,7 @@ GameObject:
   - component: {fileID: 1449782604}
   - component: {fileID: 1449782603}
   - component: {fileID: 1449782602}
+  - component: {fileID: 1449782605}
   m_Layer: 0
   m_Name: Kapi_5_7
   m_TagString: Untagged
@@ -8144,6 +8319,21 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1449782600}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1449782605
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1449782600}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 367a951957a23c34a91c88bf9f73015a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Portakalcik.Door
+  isOpen: 0
+  openSpeed: 3
+  sinkDistance: 3.2
 --- !u!1 &1518467542
 GameObject:
   m_ObjectHideFlags: 0
@@ -8268,6 +8458,7 @@ GameObject:
   - component: {fileID: 1523554413}
   - component: {fileID: 1523554412}
   - component: {fileID: 1523554411}
+  - component: {fileID: 1523554414}
   m_Layer: 0
   m_Name: Kapi_8_9
   m_TagString: Untagged
@@ -8368,6 +8559,21 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1523554409}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1523554414
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1523554409}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 367a951957a23c34a91c88bf9f73015a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Portakalcik.Door
+  isOpen: 0
+  openSpeed: 3
+  sinkDistance: 3.2
 --- !u!1 &1537428882
 GameObject:
   m_ObjectHideFlags: 0
@@ -8492,6 +8698,7 @@ GameObject:
   - component: {fileID: 1550632473}
   - component: {fileID: 1550632472}
   - component: {fileID: 1550632471}
+  - component: {fileID: 1550632474}
   m_Layer: 0
   m_Name: Agac_Limon_5_2
   m_TagString: Untagged
@@ -8594,6 +8801,22 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1550632469}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1550632474
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1550632469}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7453e8efb604a44a8a16c0b7bf27b1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Portakalcik.FruitTree
+  treeType: 2
+  fruitYield: 2
+  isHarvested: 0
+  interactDistance: 3.5
 --- !u!1 &1552788483
 GameObject:
   m_ObjectHideFlags: 0
@@ -8698,6 +8921,7 @@ GameObject:
   - component: {fileID: 1568125778}
   - component: {fileID: 1568125777}
   - component: {fileID: 1568125776}
+  - component: {fileID: 1568125779}
   m_Layer: 0
   m_Name: Kapi_2_3
   m_TagString: Untagged
@@ -8798,6 +9022,21 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1568125774}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1568125779
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1568125774}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 367a951957a23c34a91c88bf9f73015a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Portakalcik.Door
+  isOpen: 0
+  openSpeed: 3
+  sinkDistance: 3.2
 --- !u!1 &1586664580
 GameObject:
   m_ObjectHideFlags: 0
@@ -8810,6 +9049,7 @@ GameObject:
   - component: {fileID: 1586664584}
   - component: {fileID: 1586664583}
   - component: {fileID: 1586664582}
+  - component: {fileID: 1586664585}
   m_Layer: 0
   m_Name: Canavar_DikenBocegi_7_10
   m_TagString: Untagged
@@ -8912,6 +9152,32 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1586664580}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1586664585
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1586664580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b691cf4daf04bf47a69211740df31bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Portakalcik.Enemy
+  enemyType: 0
+  monsterName: "Diken B\xF6ce\u011Fi"
+  maxHealth: 11
+  currentHealth: 11
+  attackDamage: 9
+  attackCooldown: 2
+  moveSpeed: 2.4
+  detectionRadius: 9
+  alertReactionTime: 1.5
+  maxChaseDistance: 14
+  attackRadius: 1.6
+  guardedDoor: {fileID: 1523554414}
+  awareness: 0
+  isAlerted: 0
 --- !u!1 &1594980208
 GameObject:
   m_ObjectHideFlags: 0
@@ -9856,6 +10122,7 @@ GameObject:
   - component: {fileID: 1699742290}
   - component: {fileID: 1699742289}
   - component: {fileID: 1699742288}
+  - component: {fileID: 1699742291}
   m_Layer: 0
   m_Name: Agac_Portakal_11_1
   m_TagString: Untagged
@@ -9958,6 +10225,22 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1699742286}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1699742291
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1699742286}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7453e8efb604a44a8a16c0b7bf27b1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Portakalcik.FruitTree
+  treeType: 1
+  fruitYield: 3
+  isHarvested: 0
+  interactDistance: 3.5
 --- !u!1 &1711535949
 GameObject:
   m_ObjectHideFlags: 0
@@ -10082,6 +10365,7 @@ GameObject:
   - component: {fileID: 1715402746}
   - component: {fileID: 1715402745}
   - component: {fileID: 1715402744}
+  - component: {fileID: 1715402747}
   m_Layer: 0
   m_Name: Agac_Limon_11_6
   m_TagString: Untagged
@@ -10184,6 +10468,22 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1715402742}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1715402747
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1715402742}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7453e8efb604a44a8a16c0b7bf27b1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Portakalcik.FruitTree
+  treeType: 2
+  fruitYield: 2
+  isHarvested: 0
+  interactDistance: 3.5
 --- !u!1 &1736325538
 GameObject:
   m_ObjectHideFlags: 0
@@ -10980,6 +11280,7 @@ GameObject:
   - component: {fileID: 1905151087}
   - component: {fileID: 1905151086}
   - component: {fileID: 1905151085}
+  - component: {fileID: 1905151088}
   m_Layer: 0
   m_Name: Canavar_DikenBocegi_3_6
   m_TagString: Untagged
@@ -11082,6 +11383,32 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1905151083}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1905151088
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1905151083}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b691cf4daf04bf47a69211740df31bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Portakalcik.Enemy
+  enemyType: 0
+  monsterName: "Diken B\xF6ce\u011Fi"
+  maxHealth: 11
+  currentHealth: 11
+  attackDamage: 9
+  attackCooldown: 2
+  moveSpeed: 2.4
+  detectionRadius: 9
+  alertReactionTime: 1.5
+  maxChaseDistance: 14
+  attackRadius: 1.6
+  guardedDoor: {fileID: 2069721249}
+  awareness: 0
+  isAlerted: 0
 --- !u!1 &1935543170
 GameObject:
   m_ObjectHideFlags: 0
@@ -11430,6 +11757,7 @@ GameObject:
   - component: {fileID: 1999877773}
   - component: {fileID: 1999877772}
   - component: {fileID: 1999877771}
+  - component: {fileID: 1999877774}
   m_Layer: 0
   m_Name: Agac_Limon_1_10
   m_TagString: Untagged
@@ -11532,6 +11860,22 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1999877769}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1999877774
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1999877769}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7453e8efb604a44a8a16c0b7bf27b1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Portakalcik.FruitTree
+  treeType: 2
+  fruitYield: 2
+  isHarvested: 0
+  interactDistance: 3.5
 --- !u!1 &2009228657
 GameObject:
   m_ObjectHideFlags: 0
@@ -11768,6 +12112,7 @@ GameObject:
   - component: {fileID: 2035089248}
   - component: {fileID: 2035089247}
   - component: {fileID: 2035089246}
+  - component: {fileID: 2035089250}
   m_Layer: 0
   m_Name: Cikis_Bitis
   m_TagString: Untagged
@@ -11868,6 +12213,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2035089250
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2035089245}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97477c41eeb95a4458c1ac4d193b2000, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Portakalcik.ExitGate
+  requiredOranges: 1
+  triggerRadius: 3
 --- !u!1 &2043399346
 GameObject:
   m_ObjectHideFlags: 0
@@ -12222,6 +12581,7 @@ GameObject:
   - component: {fileID: 2069721248}
   - component: {fileID: 2069721247}
   - component: {fileID: 2069721246}
+  - component: {fileID: 2069721249}
   m_Layer: 0
   m_Name: Kapi_3_7
   m_TagString: Untagged
@@ -12322,6 +12682,21 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2069721244}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &2069721249
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2069721244}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 367a951957a23c34a91c88bf9f73015a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Portakalcik.Door
+  isOpen: 0
+  openSpeed: 3
+  sinkDistance: 3.2
 --- !u!1 &2103810281
 GameObject:
   m_ObjectHideFlags: 0
