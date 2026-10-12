@@ -3,7 +3,21 @@ guid: 5766fbf834e4c4302b4c1cf6653418e8
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - wallPrefab: {fileID: 7778533487269116251, guid: 803c0b105ec7c4d05b4ce6f05877f183, type: 3}
+  - pathPrefab: {instanceID: 0}
+  - playerPrefab: {instanceID: 0}
+  - exitPrefab: {instanceID: 0}
+  - doorPrefab: {instanceID: 0}
+  - limonPrefab: {instanceID: 0}
+  - mandalinaPrefab: {instanceID: 0}
+  - portakalPrefab: {instanceID: 0}
+  - dikenBocegiPrefab: {instanceID: 0}
+  - golgeYarasaPrefab: {instanceID: 0}
+  - ormanTilkisiPrefab: {instanceID: 0}
+  - kokGolemiPrefab: {instanceID: 0}
+  - labirentMuhafizPrefab: {instanceID: 0}
+  - spawnParent: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
