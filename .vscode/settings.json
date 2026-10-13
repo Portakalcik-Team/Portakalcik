@@ -68,5 +68,5 @@
         "*.slnx": "*.csproj"
     },
     "dotnet.defaultSolution": "Portakalcik.slnx",
-    "explorer.excludeGitIgnore": true
+    "dotnet.enableWorkspaceBasedDevelopment": false
 }
