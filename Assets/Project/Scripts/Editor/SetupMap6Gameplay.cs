@@ -7,8 +7,7 @@ namespace Portakalcik.Editor
 {
     public static class SetupMap6Gameplay
     {
-        // Otomatik sahne geçişini engellemek için [InitializeOnLoad] kaldırıldı.
-        // Menü üzerinden manuel çalıştırılabilir: Portakalcik -> Setup Map 6 Complete Gameplay
+
         [MenuItem("Portakalcik/Setup Map 6 Complete Gameplay")]
         public static void Execute()
         {
