@@ -5,13 +5,8 @@ using Portakalcik;
 
 namespace Portakalcik.Editor
 {
-    [InitializeOnLoad]
     public static class SetupMap6Gameplay
     {
-        static SetupMap6Gameplay()
-        {
-            EditorApplication.delayCall += Execute;
-        }
 
         [MenuItem("Portakalcik/Setup Map 6 Complete Gameplay")]
         public static void Execute()
