@@ -3,7 +3,7 @@ using UnityEngine;
 // Player'a ekle (Rigidbody + Collider gerekli). Sadece zıplamayı yapar: Space.
 // Yerdeyken zıplar. Zıplama yüksekliği duvar yüksekliğinden (3) az olmalı, yoksa labirent atlanır.
 [RequireComponent(typeof(Rigidbody))]
-public class PlayerJump : MonoBehaviour
+public class M1PlayerJump : MonoBehaviour
 {
     public float jumpHeight = 1f;      // zıplama yüksekliği (birim)
     public float groundCheckExtra = 0.15f;

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PlayerTrigger : MonoBehaviour
+public class M10PlayerTrigger : MonoBehaviour
 {
     // Inspector'dan her obje için özel olarak ayarlayabileceğin kısımlar
     [SerializeField] private string message = "Level Completed!";

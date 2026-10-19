@@ -14,9 +14,9 @@ void OnCollisionEnter(Collision hit)
 
 {
 
-// Who? only the courier has PlayerMove
+// Who? only the courier has M10PlayerMove
 
-PlayerMove move = hit.collider.GetComponent<PlayerMove>();
+M10PlayerMove move = hit.collider.GetComponent<M10PlayerMove>();
 
 // Act: the courier loses its grip
 
@@ -30,7 +30,7 @@ void OnCollisionExit(Collision hit)
 
 {
 
-PlayerMove move = hit.collider.GetComponent<PlayerMove>();
+M10PlayerMove move = hit.collider.GetComponent<M10PlayerMove>();
 
 if (move != null) move.SetGrip(1f); // full grip again
 
