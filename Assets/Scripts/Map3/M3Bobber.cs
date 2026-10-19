@@ -1,7 +1,7 @@
 using UnityEngine;
 
 // Map_3: W02 slayttaki Bobber. Visual cocugunu yukari asagi ziplatir (ana nesneye degil).
-public class map3_bobber : MonoBehaviour
+public class M3Bobber : MonoBehaviour
 {
     [SerializeField] private float bobHeight = 0.25f;   // metre yukari ve asagi
     [SerializeField] private float bobSpeed = 2f;       // ne kadar hizli ziplar
