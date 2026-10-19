@@ -3,7 +3,7 @@ using UnityEngine;
 // Map_3: W03 slayttaki PlayerTrigger (Types B ve C) yaklasimi.
 // Tek script, uc is: normal mandalina, kirmizi tehlike ve yesil hedef.
 // Sadece mesaj ve removeAfter degisir. Oyuncuya degil, etkilesim nesnesine eklenir.
-public class Map3PlayerTrigger : MonoBehaviour
+public class M3PlayerTrigger : MonoBehaviour
 {
     // ikisi de her nesne icin Inspector'dan ayarlanir
     [SerializeField] private string message = "Mandalina toplandı!";

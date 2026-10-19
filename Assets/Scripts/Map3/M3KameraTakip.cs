@@ -2,7 +2,7 @@ using UnityEngine;
 
 // Map_3: kamera oyuncuyu ustten-egik aciyla yumusakca takip eder (slayt disi iyilestirme).
 // Hedef bos birakilirsa kamera sahnedeki yerinde kalir (Hafta 2'deki genel gorunum).
-public class map3_kamera_takip : MonoBehaviour
+public class M3KameraTakip : MonoBehaviour
 {
     [SerializeField] private Transform target;
     [SerializeField] private Vector3 offset = new Vector3(0f, 13f, -7.5f);
