@@ -2,8 +2,7 @@ using UnityEngine;
 
 using UnityEngine.InputSystem;
 
-public class PlayerDrop : MonoBehaviour
-
+public class M10PlayerDrop : MonoBehaviour
 {
 
 private PlayerCarry carry;
