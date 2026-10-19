@@ -1,7 +1,7 @@
 using UnityEngine;
 
 // Map_3: W02 slayttaki Spinner. Visual cocugunu kendi ekseninde dondurur (ana nesneye degil).
-public class map3_spinner : MonoBehaviour
+public class M3Spinner : MonoBehaviour
 {
     // derece / SANIYE
     [SerializeField] private float rotationSpeed = 90f;

@@ -3,7 +3,7 @@ using UnityEngine;
 // Map_3 devriye canavari (W02 slayttaki Patroller yaklasimi):
 // baslangic konumu (A) ile Point B arasinda gidip gelir.
 // Bu script ana (bos) nesneyi tasir; gorsel donus/suzulme varsa sadece Visual cocugunda calisir.
-public class map3_patroller : MonoBehaviour
+public class M3Patroller : MonoBehaviour
 {
     [SerializeField] private Transform pointB;
     [SerializeField] private float speed = 2.0f;   // metre / saniye
