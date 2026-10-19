@@ -31,6 +31,67 @@ Canavarlar:                  Ağaçlar:
 
 ---
 
+## 🎓 Seviye 0 — "İlk Hasat" (Eğitim Haritası)
+
+**Tema:** Oyunun nasıl oynandığını adım adım öğreten, tek yollu (yılan şeklinde) eğitim seviyesi  
+**Zorluk:** ☆☆☆☆☆ (Eğitim)  
+**Amaç:** Her istasyon tek bir mekanik öğretir; sondaki çatalda oyuncu ilk kez "hız mı keşif mi" kararı verir.
+
+```text
+█ █ █ █ █ █ █ █ █ █ █ █ █
+█ S . . . . . . . . . m █
+█ █ █ █ █ █ █ █ █ █ █ . █
+█ . . . . D 1 . . . . . █
+█ . █ █ █ █ █ █ █ █ █ █ █
+█ . . . . . . . . . . . █
+█ █ █ l █ █ █ █ █ █ █ . █
+█ p . . . . . . . . . . █
+█ . █ █ █ █ █ █ █ █ █ █ █
+█ . . . . . 1 D . . . . E
+█ . █ █ █ █ █ █ █ █ █ . █
+█ . . . . . l . . . . . █
+█ █ █ █ █ █ █ █ █ █ █ █ █
+```
+
+| # | İstasyon | Konum (satır, sütun) | Öğrettiği | Ekran İpucu |
+|---|---|---|---|---|
+| 1 | Başlangıç koridoru | (1, 1–10) | Hareket: WASD, fare, Shift, Space | "WASD ile yürü, fareyle etrafa bak" |
+| 2 | Mandalina ağacı | (1, 11) | **E'yi basılı tutarak** hasat | "Ağaca yaklaş ve [E]'yi basılı tut" |
+| 3 | Diken Böceği + Kapı | (3, 6) / (3, 5) | Nişan alıp atış, gözlerin rengi, kapının açılması | "Gözleri kırmızıya dönerse seni fark etmiştir. Sol tıkla mandalina at!" |
+| 4 | Gizli limon | (6, 3) | Çıkmaz yollar ödül saklar | "Çıkmaz yollara bak, ağaçlar oralarda saklanır" |
+| 5 | Portakal ağacı | (7, 1) | Portakal = çıkış anahtarı | "Portakal olmadan çıkış açılmaz!" |
+| 6 | Kısayol çatalı | (9, 1) | Hız mı keşif mi kararı | "Kısa yol: canavarı vur. Uzun yol: güvenli, üstelik limon var." |
+
+| Öğe | Miktar | Konum Stratejisi |
+|---|---|---|
+| 🐛 Diken Böceği | 2 | 1. canavar zorunlu geçişte (atışı öğretir), 2. canavar isteğe bağlı kısayolda |
+| 🍊 Mandalina Ağacı | 1 | İlk koridorun sonunda, geçilmeden ilerlenemez |
+| 🍊 Portakal Ağacı | 1 | Yolun döndüğü köşede |
+| 🍋 Limon Ağacı | 2 | Biri yan cepte, biri uzun yolda (keşfe ödül) |
+| 🚪 Kapı | 2 | Biri zorunlu, biri kısayol |
+
+**Kısayol mekaniği:**
+- ⬇️ Çataldan (9, 1) sağa gidip Diken'i öldürünce → **kısa yol: 11 hücre**
+- ⬇️ Aşağıdan dolaşınca → **uzun yol: 15 hücre**, ama canavarsız ve yolda bonus limon var
+- Fark 4 hücre, yani "Diken kısayolu 3–5 hücre" kuralına uyuyor
+
+**Eğitime özel denge değerleri:**
+
+| Parametre | Değer | Neden |
+|---|---|---|
+| Başlangıç mandalinası | **0** (normalde 6) | Oyuncu hasat etmek zorunda kalsın |
+| Mandalina ağacı verimi | **8** | 4 vuruş yeter (2 × 2), 4 ıska payı kalır |
+| Diken Böceği | Sv.1 değerleri: 6 HP, 4 hasar | Ölmek neredeyse imkânsız (25 vuruş gerekir) |
+| Ölüm cezası / Par süresi | Yok | Baskı olmasın; puan ekranı sadece bilgi versin |
+| Limon | Sadece toplanır | Soru sistemi henüz kodda yok |
+
+**Uygulama notları (Unity):**
+- `Enemy.cs` canavarı sadece mesafeye göre uyarıyor, görüş kontrolü yok. Koridorlar arasında 2 satır (6 birim) olduğu için eğitimde `detectionRadius ≈ 4.5` kullanılmalı ya da Raycast ile görüş kontrolü eklenmeli.
+- `PlayerController.CompleteLevel` içinde seviye (6) ve ekrandaki hedef süre (04:30) sabit yazılmış. Bunlar parametreye çevrilmeli.
+- İpuçları için basit bir `TutorialHint` tetik alanı (trigger zone) yeterli: oyuncu girince `ShowMessage()` bir kez çağrılır.
+
+---
+
 ## 🟢 Seviye 1 — "İlk Adım" (Kolay)
 
 **Tema:** Basit U şekli, öğretici seviye  
@@ -395,6 +456,7 @@ Canavarlar:                  Ağaçlar:
 
 | Sv. | Tema | Canavar | Ağaç | Kısayol | Çıkmaz | Zorluk |
 |---|---|---|---|---|---|---|
+| 0 | Eğitim (Yılan) | 2 | 4 | 1 | 1 | ☆☆☆☆☆ |
 | 1 | U-Şekli | 2 | 5 | 2 | 2 | ★☆☆☆☆ |
 | 2 | Çatallanma | 3 | 6 | 3 | 3 | ★★☆☆☆ |
 | 3 | İlk Labirent | 3 | 7 | 3 | 4 | ★★☆☆☆ |
