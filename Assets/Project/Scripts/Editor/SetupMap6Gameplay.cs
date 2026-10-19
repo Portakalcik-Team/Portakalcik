@@ -5,7 +5,6 @@ using Portakalcik;
 
 namespace Portakalcik.Editor
 {
-    [InitializeOnLoad]
     public static class SetupMap6Gameplay
     {
 
