@@ -2,7 +2,7 @@ using UnityEngine;
 
 using UnityEngine.InputSystem;
 
-public class PlayerJump : MonoBehaviour
+public class M10PlayerJump : MonoBehaviour
 
 {
 

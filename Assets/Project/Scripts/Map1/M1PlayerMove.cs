@@ -3,7 +3,7 @@ using UnityEngine;
 // Player'a ekle (Rigidbody + Collider gerekli). Sadece yürümeyi yapar: WASD / ok tuşları.
 // Yükseklik (Y) hızına dokunmaz, zıplama ve yer çekimi bozulmasın diye.
 [RequireComponent(typeof(Rigidbody))]
-public class PlayerMove : MonoBehaviour
+public class M1PlayerMove : MonoBehaviour
 {
     public float speed = 5f;
 

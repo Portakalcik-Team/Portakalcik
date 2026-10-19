@@ -4,7 +4,7 @@ using UnityEngine;
 // Ağaç      -> "... toplandı!" + ağaç kaybolur
 // Kırmızı   -> "Can azaldı!"
 // Yeşil yer -> "Bölüm tamamlandı!"
-public class PlayerTrigger : MonoBehaviour
+public class M1PlayerTrigger : MonoBehaviour
 {
     [Header("İsim başlangıçları (küçük harf)")]
     public string[] treePrefixes  = { "limon", "mandalina", "portakal" };
