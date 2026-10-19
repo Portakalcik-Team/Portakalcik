@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7590414459342869654}
   - component: {fileID: 1298208327718180733}
   - component: {fileID: 6277504355112974562}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Path Prefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
