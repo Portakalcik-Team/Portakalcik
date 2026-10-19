@@ -7,7 +7,7 @@ using UnityEngine.InputSystem;
 // SelectionBase: Scene'de kapsule tiklayinca Visual degil, fizik govdeli kok secilir (surukleme testi icin).
 [SelectionBase]
 [RequireComponent(typeof(Rigidbody))]
-public class map3_oyuncu_hareket : MonoBehaviour
+public class M3OyuncuHareket : MonoBehaviour
 {
     [SerializeField] private float moveSpeed = 4f;          // metre / saniye
     [SerializeField] private float acceleration = 30f;      // normal zeminde hizlanma/frenleme (m/s^2)
