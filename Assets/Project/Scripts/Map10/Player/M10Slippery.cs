@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Slippery : MonoBehaviour
+public class M10Slippery : MonoBehaviour
 
 {
 
