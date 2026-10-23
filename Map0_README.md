@@ -19,6 +19,16 @@ Oyuncu sol üstteki girişten (S) başlar, sarı portakalları (kargo) bulur, on
 | Yeşil | buraya getir | çıkış / teslim alanı (M_Goal) |
 | Kırmızı | tehlike | kırmızı şeritler ve hareketli blok (M_Hazard) |
 
+## Fiiller (Verbs)
+
+| Fiil | Karşılaştığı üç şey | Hafta |
+|---|---|---|
+| yürü | dar koridorlar, kırmızı şeritler, buzlu rampa | 4 |
+| zıpla | kırmızı şeritler, platform, hareketli blok | 4 |
+| al | yerdeki portakal, platformdaki portakal, düşen portakal | 3 |
+| bırak | kırmızı alan (zorla), E tuşu (isteyerek), tekrar alma beklemesi | 3–4 |
+| teslim et | yeşil çıkış, kısa yol, uzun yol | 3 |
+
 ## Kim ne yaptı
 
 | Üye | Bu harita |
