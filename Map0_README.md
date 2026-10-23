@@ -29,6 +29,16 @@ Oyuncu sol üstteki girişten (S) başlar, sarı portakalları (kargo) bulur, on
 | bırak | kırmızı alan (zorla), E tuşu (isteyerek), tekrar alma beklemesi | 3–4 |
 | teslim et | yeşil çıkış, kısa yol, uzun yol | 3 |
 
+## Feel notları
+
+| Ayar | Değer | Neden |
+|---|---|---|
+| Max Speed | 5 m/s | 39 m'lik labirentte bir koridor (33 m) yaklaşık 7 saniyede geçiliyor; 3 m'lik koridorlarda duvara çarpmadan dönülebiliyor. |
+| Acceleration | 40 | Tam hıza 0.14 saniyede çıkıyor: tepkili ama robotik değil. Hareketli bloğun yanından geçerken anında durup kalkabiliyorum. |
+| Turn Speed | 720°/s | Koridor dönüşlerinde burun hemen yeni yöne bakıyor; 90 deneyince burun geride kalıyordu. |
+| Jump Force | 4 | Yaklaşık 0.8 m yükselme: 1.5 m'lik kırmızı şeritlerin üstünden atlanıyor; 1 m'lik platforma sadece koşarak çıkılıyor, bu yüzden rampa önemini koruyor. |
+| Buz tutunması (grip) | 0.04 | Buzda hız değişimi 40 × 0.04 = 1.6 m/s². Rampa 11° olduğu için yerçekimi bunu yeniyor: yavaş giden geri kayıyor, hızlı ve düz giden platforma çıkıyor. 9.5°'de bu iki değer neredeyse eşit, oyuncu rampada kalıyor, o yüzden hocanın 11°'si seçildi. |
+
 ## Kim ne yaptı
 
 | Üye | Bu harita |
