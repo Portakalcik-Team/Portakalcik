@@ -226,6 +226,7 @@ GameObject:
   - component: {fileID: 7554837992727070558}
   - component: {fileID: 462956294641562934}
   - component: {fileID: 4124359578449034977}
+  - component: {fileID: 2858628746405829825}
   m_Layer: 0
   m_Name: Map2_ThornBeetle
   m_TagString: Untagged
@@ -283,7 +284,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.5, y: 1, z: 1.5}
+  m_Size: {x: 2.2, y: 1.5, z: 2.2}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &462956294641562934
 Rigidbody:
@@ -309,7 +310,7 @@ Rigidbody:
   m_ImplicitTensor: 1
   m_UseGravity: 1
   m_IsKinematic: 1
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 0
   m_CollisionDetection: 0
 --- !u!114 &4124359578449034977
@@ -325,3 +326,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Map2_MonsterHit
   damage: 5
+--- !u!65 &2858628746405829825
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8865038749763150171}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.5, y: 1, z: 1.5}
+  m_Center: {x: 0, y: 0, z: 0}
