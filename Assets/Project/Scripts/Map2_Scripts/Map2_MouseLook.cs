@@ -3,15 +3,15 @@ using UnityEngine.InputSystem;
 
 public class Map2_MouseLook : MonoBehaviour
 {
-    [SerializeField] private Transform cameraTransform;   // the Main Camera, a child of the Player
+    [SerializeField] private Transform cameraPivot;            // Player/CameraPivot - the Cinemachine camera follows it
     [SerializeField] private float mouseSensitivity = 0.15f;   // degrees per mouse pixel
     [SerializeField] private float stickSpeed = 180f;          // degrees per second, gamepad right stick
     [SerializeField] private float maxPitch = 80f;             // how far up and down you can look
 
     private Rigidbody rb;
     private InputAction lookAction;
-    private float yaw;     // left / right: turns the whole body
-    private float pitch;   // up / down: tilts only the camera
+    private float yaw;     // left / right
+    private float pitch;   // up / down
 
     void Start()
     {
@@ -33,11 +33,11 @@ public class Map2_MouseLook : MonoBehaviour
         pitch -= look.y;                                  // mouse up = look up
         pitch = Mathf.Clamp(pitch, -maxPitch, maxPitch);
 
-        // up / down: only the camera tilts, the body stays upright
-        cameraTransform.localRotation = Quaternion.Euler(pitch, 0f, 0f);
+        // the view turns every frame, so looking around is smooth (the camera brain runs after this, in LateUpdate)
+        cameraPivot.rotation = Quaternion.Euler(pitch, yaw, 0f);
     }
 
-    // left / right: the body turns - a Rigidbody is turned in FixedUpdate (Week 4)
+    // the body only turns left / right, at the physics rate - PlayerMove walks the way it faces
     void FixedUpdate()
     {
         rb.MoveRotation(Quaternion.Euler(0f, yaw, 0f));
