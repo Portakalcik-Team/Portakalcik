@@ -7,9 +7,11 @@ public class Map6PlayerMove : MonoBehaviour
     [SerializeField] private float maxSpeed = 5f;
     [SerializeField] private float acceleration = 40f;
     [SerializeField] private float turnSpeed = 720f;
+    [SerializeField] private bool firstPersonMode = true; // Birinci şahıs bağıl hareket
 
     private Rigidbody rb;
     private InputAction moveAction;
+    private Vector2 moveInput; // Ham girdi (x = sol/sağ, y = ileri/geri)
     private Vector3 direction; // Oyuncunun gitmek istediği yön
     private float grip = 1f;   // 1 = normal zemin, 0.04 = buz
 
@@ -81,13 +83,32 @@ public class Map6PlayerMove : MonoBehaviour
             }
         }
 
+        moveInput = input;
         direction = new Vector3(input.x, 0f, input.y);
     }
 
     void FixedUpdate()
     {
-        // Yatay hız kontrolü
-        Vector3 wanted = direction * maxSpeed;
+        // Yatay hız kontrolü (First Person modunda baktığı yöne göre, üçüncü şahısta dünya yönünde)
+        Vector3 wanted;
+        if (firstPersonMode)
+        {
+            Vector3 forward = transform.forward;
+            Vector3 right = transform.right;
+            forward.y = 0f;
+            right.y = 0f;
+            forward.Normalize();
+            right.Normalize();
+
+            Vector3 moveDir = forward * moveInput.y + right * moveInput.x;
+            if (moveDir.sqrMagnitude > 1f) moveDir.Normalize();
+            wanted = moveDir * maxSpeed;
+        }
+        else
+        {
+            wanted = direction * maxSpeed;
+        }
+
         Vector3 v = rb.linearVelocity;
         Vector3 flat = new Vector3(v.x, 0f, v.z);
 
@@ -96,12 +117,15 @@ public class Map6PlayerMove : MonoBehaviour
         flat = Vector3.MoveTowards(flat, wanted, step);
         rb.linearVelocity = new Vector3(flat.x, v.y, flat.z);
 
-        // Hareket yönüne doğru dönüş
-        if (direction == Vector3.zero) return;
-        Quaternion look = Quaternion.LookRotation(direction);
-        float turn = turnSpeed * Time.fixedDeltaTime;
-        look = Quaternion.RotateTowards(rb.rotation, look, turn);
-        rb.MoveRotation(look);
+        // Hareket yönüne doğru dönüş (yalnızca üçüncü şahıs modunda çalışır; FPS modunda rotasyonu Map6MouseLook yönetir)
+        if (!firstPersonMode)
+        {
+            if (direction == Vector3.zero) return;
+            Quaternion look = Quaternion.LookRotation(direction);
+            float turn = turnSpeed * Time.fixedDeltaTime;
+            look = Quaternion.RotateTowards(rb.rotation, look, turn);
+            rb.MoveRotation(look);
+        }
     }
 
     // Buzlu zemin veya rampa tutuşu değiştirmek için çağırır
