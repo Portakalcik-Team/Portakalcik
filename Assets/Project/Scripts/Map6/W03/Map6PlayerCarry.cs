@@ -10,8 +10,16 @@ public class Map6PlayerCarry : MonoBehaviour
     {
         if (carryPoint == null)
         {
-            Transform found = transform.Find("TasimaNoktasi");
-            carryPoint = found != null ? found : transform;
+            Transform[] all = GetComponentsInChildren<Transform>(true);
+            foreach (Transform t in all)
+            {
+                if (t.name == "CarryPoint" || t.name == "TasimaNoktasi")
+                {
+                    carryPoint = t;
+                    break;
+                }
+            }
+            if (carryPoint == null) carryPoint = transform;
         }
     }
 
