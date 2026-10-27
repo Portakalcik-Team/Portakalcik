@@ -20,8 +20,8 @@ public class Map2_PlayerJump : MonoBehaviour
         // one short kick upwards
         rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
     }
-    // is there Ground right under our feet?
-    bool IsGrounded()
+    // is there Ground right under our feet? (public: Map2_CameraFeel asks it for the landing dip)
+    public bool IsGrounded()
     {
         // from our middle, 1.1 m down: half our height + 0.1
         return Physics.Raycast(transform.position, Vector3.down, 1.1f, groundLayers);
