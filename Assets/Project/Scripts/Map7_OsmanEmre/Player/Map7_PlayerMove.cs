@@ -23,7 +23,16 @@ public class Map7_PlayerMove : MonoBehaviour
     {
         // every frame: read WASD, arrows or the left stick
         Vector2 input = moveAction.ReadValue<Vector2>();
-        direction = new Vector3(input.x, 0f, input.y);
+        // hareketi kameraya göre çevir: W kameranın baktığı yöne (yatayda), D kameranın sağına gider
+        Transform cam = Camera.main != null ? Camera.main.transform : null;
+        if (cam == null)
+        {
+            direction = new Vector3(input.x, 0f, input.y);
+            return;
+        }
+        Vector3 forward = Vector3.ProjectOnPlane(cam.forward, Vector3.up).normalized;
+        Vector3 right = Vector3.ProjectOnPlane(cam.right, Vector3.up).normalized;
+        direction = right * input.x + forward * input.y;
     }
     void FixedUpdate()
     {

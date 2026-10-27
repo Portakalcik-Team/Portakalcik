@@ -79196,6 +79196,7 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
+  - component: {fileID: 1552788490}
   - component: {fileID: 1552788486}
   - component: {fileID: 1552788485}
   - component: {fileID: 1552788484}
@@ -79274,8 +79275,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1552788483}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 19, y: 40, z: -18}
+  m_LocalRotation: {x: 0, y: 0.9483, z: -0.3173, w: 0}
+  m_LocalPosition: {x: 3, y: 5.6, z: 3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -109042,3 +109043,24 @@ SceneRoots:
   - {fileID: 1552788486}
   - {fileID: 120869005}
   - {fileID: 1790141170}
+--- !u!114 &1552788490
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1552788483}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b3d5f7a1c2e4096a4b8d0e2f6c19a57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Map7_ThirdPersonCamera
+  distance: 7
+  lookHeight: 1
+  yaw: 180
+  pitch: 30
+  minPitch: 10
+  maxPitch: 70
+  mouseSensitivity: 0.15
+  followSmoothTime: 0.08
+  lockCursor: 1

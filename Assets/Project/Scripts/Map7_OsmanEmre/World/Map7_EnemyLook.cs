@@ -78,8 +78,81 @@ public class Map7_EnemyLook : MonoBehaviour
         else DestroyImmediate(o);
     }
 
+    // ---------- Hasar (Meyve Kepçesi) ----------
+    [Header("Hasar")]
+    [SerializeField] private int health = 3;       // can; Portakal 2, diğerleri 1 hasar verir
+    private float stunTimer = 0f;                  // dondurma süresi
+    private float punchTimer = 0f;                 // vurulma "sıçrama" animasyonu
+    private float deathTimer = -1f;                // ölüm küçülme animasyonu
+    private Vector3 deathStartScale;
+    private Vector3 visualBaseScale;
+    private bool visualScaleKnown = false;
+    private System.Collections.Generic.List<MonoBehaviour> pausedMovers = new System.Collections.Generic.List<MonoBehaviour>();
+
+    // Map7_ThrownFruit çağırır: fırlatılan meyve düşmana çarptı.
+    public void Hit(Map7_FruitType type)
+    {
+        if (deathTimer >= 0f) return;
+
+        int damage = type == Map7_FruitType.Portakal ? 2 : 1;
+        float stun = type == Map7_FruitType.Limon ? 3f : (type == Map7_FruitType.Mandalina ? 1f : 1.5f);
+
+        health -= damage;
+        punchTimer = 0.2f;
+
+        if (health <= 0)
+        {
+            deathTimer = 0f;
+            deathStartScale = transform.localScale;
+            PauseMovers();
+            Destroy(gameObject, 0.4f);
+            return;
+        }
+
+        stunTimer = Mathf.Max(stunTimer, stun);
+        PauseMovers();
+    }
+
+    void PauseMovers()
+    {
+        // Hareket eden scriptleri durdur (Patroller, Spinner, Bobber)
+        MonoBehaviour[] movers = { GetComponent<Map7_Patroller>(), GetComponent<Map7_Spinner>(), GetComponent<Map7_Bobber>() };
+        foreach (MonoBehaviour m in movers)
+            if (m != null && m.enabled) { m.enabled = false; pausedMovers.Add(m); }
+    }
+
+    void ResumeMovers()
+    {
+        foreach (MonoBehaviour m in pausedMovers) if (m != null) m.enabled = true;
+        pausedMovers.Clear();
+    }
+
+    void UpdateHitEffects()
+    {
+        if (!visualScaleKnown && visual != null) { visualBaseScale = visual.localScale; visualScaleKnown = true; }
+
+        if (stunTimer > 0f)
+        {
+            stunTimer -= Time.deltaTime;
+            if (stunTimer <= 0f && deathTimer < 0f) ResumeMovers();
+        }
+
+        if (punchTimer > 0f)
+        {
+            punchTimer -= Time.deltaTime;
+            if (visual != null && visualScaleKnown)
+                visual.localScale = visualBaseScale * (1f + Mathf.Max(0f, punchTimer) * 1.5f);   // vurulunca şişip söner
+        }
+
+        if (deathTimer >= 0f)
+        {
+            deathTimer += Time.deltaTime;
+            transform.localScale = deathStartScale * Mathf.Clamp01(1f - deathTimer / 0.4f);
+        }
+    }
     void Update()
     {
+        UpdateHitEffects();
         float t = Time.time + seed;
 
         if (body != null)
