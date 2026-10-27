@@ -42,6 +42,24 @@ public static class Map7_BakeEnemies
                 count++;
             }
 
+            // Oyuncu: meyve kepçesi (fırlatıcı)
+            if (t.name == "Player" && t.CompareTag("Player") && t.GetComponent<Map7_FruitLauncher>() == null)
+            {
+                Undo.AddComponent<Map7_FruitLauncher>(t.gameObject);
+                EditorUtility.SetDirty(t.gameObject);
+                count++;
+            }
+
+            // Oyuncu: labirent kaşifi görünümü
+            if (t.name == "Player" && t.CompareTag("Player") && t.GetComponent<Map7_PlayerLook>() == null)
+            {
+                Map7_PlayerLook pl = Undo.AddComponent<Map7_PlayerLook>(t.gameObject);
+                pl.Build();
+                EditorUtility.SetDirty(t.gameObject);
+                count++;
+                continue;
+            }
+
             // Sahnede çıkışın adı sadece "Exit" olabilir
             if (t.name == "Exit" && t.GetComponent<Map7_PropLook>() == null)
             {
@@ -134,12 +152,14 @@ public static class Map7_BakeEnemies
                 Map7_EnemyLook look = root.GetComponent<Map7_EnemyLook>();
                 Map7_TreeLook tree = root.GetComponent<Map7_TreeLook>();
                 Map7_PropLook prop = root.GetComponent<Map7_PropLook>();
-                if (look == null && tree == null && prop == null) continue;
+                Map7_PlayerLook playerLook = root.GetComponent<Map7_PlayerLook>();
+                if (look == null && tree == null && prop == null && playerLook == null) continue;
                 if (!force && root.transform.Find("Visual") != null) continue;
 
                 if (look != null) look.Build();
                 if (tree != null) tree.Build();
                 if (prop != null) prop.Build();
+                if (playerLook != null) playerLook.Build();
                 PrefabUtility.SaveAsPrefabAsset(root, path);
                 count++;
                 Debug.Log("[Map7] Görünüm prefab'a kaydedildi: " + path);
