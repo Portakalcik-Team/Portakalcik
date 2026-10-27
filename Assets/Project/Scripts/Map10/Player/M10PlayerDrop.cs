@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 public class M10PlayerDrop : MonoBehaviour
 {
 
-private PlayerCarry carry;
+private M10PlayerCarry carry;
 
 private InputAction dropAction;
 
@@ -13,9 +13,9 @@ void Start()
 
 {
 
-// our own PlayerCarry, on this same object
+// our own M10PlayerCarry, on this same object
 
-carry = GetComponent<PlayerCarry>();
+carry = GetComponent<M10PlayerCarry>();
 
 // "Interact" = the E key or the gamepad's North button
 
