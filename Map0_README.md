@@ -44,3 +44,49 @@ Oyuncu sol üstteki girişten (S) başlar, sarı portakalları (kargo) bulur, on
 | Üye | Bu harita |
 |---|---|
 | Hasan Sivaslıoğlu | Map_0: graybox, scriptler, fizik, hareket |
+
+## Eğitim katmanı (Map0_Egitim)
+
+Map_0 artık oyunun eğitim haritası. Oyuncu yılan yolunda ilerlerken 13 ipucu alanından geçiyor. Her alan ekranın altında bir kart açıyor, sağ üstteki sayaç kaç tanesinin görüldüğünü gösteriyor.
+
+| Adım | Yer | Öğrettiği |
+|---|---|---|
+| 1 | Başlangıç | WASD, Space (sadece yerdeyken) |
+| 2 | 1. portakal | Al, taşı, E ile bırak |
+| 3 | Kırmızı şeritler | Tehlike portakalı düşürür |
+| 4–9 | Canavar Galerisi | 5 canavar: hız, can, hasar, kaç mandalina gerektiği |
+| 10 | Canlı Diken Böceği | Gerçek canavardan kaçma (değerse portakal düşer) |
+| 11 | Yol ayrımı | Kısa yol mu, uzun yol mu |
+| 12 | Buzlu rampa | Buzda tutunma %4 |
+| 13 | Çıkış | Teslim et |
+
+**Kurulum:** Map_0'ı aç → üst menü **Map0 → Eğitimi Kur** → kaydet. Tekrar çalıştırılabilir: eski `Map0_Egitim` nesnesini silip baştan kurar. 1–4. haftanın nesnelerine dokunmaz.
+
+**Mimari:**
+- `Map0MonsterData` (ScriptableObject): canavarın sayıları ve metni veri dosyasında, koddan ayrı. Değerler `Portakalcik_Denge_Sistemi.md`'den, Seviye 1 değerleri. Dosyalar: `Assets/Project/Prefabs/Map0/Egitim/`.
+- `Map0TutorialHint`: görünmez trigger. Player girince ilerlemeye ve panele haber verir.
+- `Map0TutorialProgress`: hangi ipuçlarının görüldüğünü `HashSet` ile sayar, değişince `event` ile duyurur (panel bunu dinler).
+- `Map0HintPanel`: kartı doldurur, açılıp kapanmayı yumuşatır. Komşu alana geçerken eski alanın çıkışı yeni kartı kapatmasın diye "şu anki ipucu" kontrolü yapar.
+- `Map0TutorialBuilder` + `Map0TutorialVisuals` (Editor): sahneyi koddan kurar. Canavar modelleri hazır şekillerden yapılır, malzemeleri `Art/Materials/Map0/Egitim/` altında.
+- Canlı Diken Böceği W02/W03 scriptlerini tekrar kullanıyor: `Map0Patroller` (hız 2 m/s = oyuncu 5 × 0.4) + `Map0Hazard` + kinematic Rigidbody.
+
+## 5. hafta: Kamera (Cinemachine)
+
+Sahne: `Map0_Week5_CM_Follow` (takip), `Map0_Week5_CM_Ramp` (buzlu tırmanış, başta kapalı), `Map0_Week5_RampaBolgesi` (`Map0CameraZone`). Main Camera'da Cinemachine Brain var, kamerayı artık o yönetiyor. Kurulum: **Map0 → Hafta 5 Kamerayı Kur**, sonra kaydet. Son olarak CM_Follow'da **Save During Play**'i elle işaretle (bu ayar her bilgisayarda ayrı).
+
+Kargoyu düşüren her tehlikede bir `CinemachineImpulseSource` var: Week 3 tehlike prefab'ı, hareketli blok ve eğitimdeki canlı Diken Böceği. `Map0Hazard` kargoyu düşürünce `GenerateImpulse()` çağırıyor. E ile bırakınca sarsıntı yok.
+
+### Kamera feel notları
+
+| Ayar | Değer | Neden |
+|---|---|---|
+| Camera Distance | 14 m | 3 m'lik koridorda önündeki iki dönemeci görüyorsun. Labirentin tamamı (39 m) görünmüyor, keşif hissi kalıyor. |
+| Damping | 1, 1, 1 | 0 her adımda görüntüyü sarsar. 3'te oyuncu 5 m/s ile ekranın kenarına kaçar. 1 sakin ama kontrol hâlâ sende. |
+| Dead Zone | 0.1 × 0.1, derinlik 1 | Kırmızı şeritlerin üstünden zıplamak kamerayı oynatmıyor. Yürüyünce takip başlıyor. |
+| Lookahead | 0.4 s, smoothing 10, Ignore Y | 5 × 0.4 = 2 m ileri bakış, koridorun sonundaki tehlike erken görünüyor. Ignore Y açık, zıplama kamerayı yukarı itmiyor. |
+| Sarsıntı | 0.5 aşağı, 0.2 s, Bump | Sadece "portakalı kaybettin" anında. Küçük tutuldu, oyuncuyu rahatsız etmesin. |
+| Rampa kamerası | 60°, 16 m, geçiş 1 s | Yukarıdan bakınca rampanın eğimi ve üstteki platform birlikte görünüyor. Rampa kısa (5 m), 2 s'lik geçiş bitmeden tırmanış başlar; 1 s yetiyor. |
+
+## Commit notu
+
+W01–W04 commitleri **geç** gönderildi.
