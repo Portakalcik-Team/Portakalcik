@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PlayerTrigger : MonoBehaviour
+public class Map7_PlayerTrigger : MonoBehaviour
 {
     // Inspector'dan değiştirebilmen için ayarlar
     [SerializeField] private string message = "Toplandi!";
