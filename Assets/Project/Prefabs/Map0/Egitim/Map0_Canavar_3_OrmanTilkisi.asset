@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0dbe4d28704af4b6498dd0547a7a3f7f, type: 3}
+  m_Name: Map0_Canavar_3_OrmanTilkisi
+  m_EditorClassIdentifier: Assembly-CSharp::Map0MonsterData
+  monsterName: Orman Tilkisi
+  shape: 2
+  firstLevel: Seviye 3
+  speedRatio: 0.9
+  attackInterval: 1.5
+  hpLevel1: 12
+  damageLevel1: 7
+  trait: "H\u0131z\u0131 sana yak\u0131n. Ka\xE7abilir!"
+  tip: "Iskalanan at\u0131\u015F bo\u015Fa giden mandalinad\u0131r. Yak\u0131ndan at."
+  color: {r: 0.8509804, g: 0.46666667, b: 0.16862746, a: 1}
