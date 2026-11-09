@@ -117,6 +117,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d067d8f5845469fb8e64da8c4589990, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Map5Cargo
+  type: {fileID: 11400000, guid: 8077cbd6146c485eb587e8676c3a723e, type: 2}
 --- !u!1 &6000000000000000007
 GameObject:
   m_ObjectHideFlags: 0
