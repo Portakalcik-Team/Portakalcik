@@ -1,17 +1,16 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-// Seviye 9: oyuncu WASD / sol çubukla yürür ve döner
+// Seviye 9: oyuncu WASD / sol çubukla yürür — baktığı yöne göre (birinci şahıs)
 public class Map9PlayerMove : MonoBehaviour
 {
-    // hareketin üç düğmesi, Inspector'da
+    // hareketin iki düğmesi (dönüşü artık Map9MouseLook yapıyor)
     [SerializeField] private float maxSpeed = 4f;
     [SerializeField] private float acceleration = 40f;
-    [SerializeField] private float turnSpeed = 720f;
 
     private Rigidbody rb;
     private InputAction moveAction;
-    private Vector3 direction;   // girdinin gösterdiği yön
+    private Vector3 direction;   // gitmek istenen yön
     private float grip = 1f;     // 1 = normal zemin
 
     void Start()
@@ -22,9 +21,9 @@ public class Map9PlayerMove : MonoBehaviour
 
     void Update()
     {
-        // her kare: WASD, oklar ya da sol çubuk
+        // W/S = baktığın yön, A/D = yana kay
         Vector2 input = moveAction.ReadValue<Vector2>();
-        direction = new Vector3(input.x, 0f, input.y);
+        direction = transform.right * input.x + transform.forward * input.y;
     }
 
     void FixedUpdate()
@@ -38,13 +37,6 @@ public class Map9PlayerMove : MonoBehaviour
         float step = acceleration * grip * Time.fixedDeltaTime;
         flat = Vector3.MoveTowards(flat, wanted, step);
         rb.linearVelocity = new Vector3(flat.x, v.y, flat.z);
-
-        // gittiği yöne dön
-        if (direction == Vector3.zero) return;
-        Quaternion look = Quaternion.LookRotation(direction);
-        float turn = turnSpeed * Time.fixedDeltaTime;
-        look = Quaternion.RotateTowards(rb.rotation, look, turn);
-        rb.MoveRotation(look);
     }
 
     // buz bunu çağırır
