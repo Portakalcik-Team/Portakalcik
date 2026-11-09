@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0dbe4d28704af4b6498dd0547a7a3f7f, type: 3}
+  m_Name: Map0_Canavar_4_KokGolemi
+  m_EditorClassIdentifier: Assembly-CSharp::Map0MonsterData
+  monsterName: "K\xF6k Golemi"
+  shape: 3
+  firstLevel: Seviye 5
+  speedRatio: 0.3
+  attackInterval: 2.5
+  hpLevel1: 18
+  damageLevel1: 10
+  trait: "Tank: \xE7ok yava\u015F ama \xE7ok g\xFC\xE7l\xFC."
+  tip: Mandalinan azsa uzun yoldan git, onu atla.
+  color: {r: 0.47843137, g: 0.3529412, b: 0.22745098, a: 1}
