@@ -1,4 +1,5 @@
 using UnityEngine;
+using Unity.Cinemachine;   // W05: kamera sarsıntısı için
 
 // Map5'in canavarı (Labirent Hayaleti, Quaternius Ghost modeli): iki nokta arasında devriye gezer ve hep oyuncuya bakar.
 // Oyuncuya değerse kargosunu düşürür ve onu geri iter.
@@ -11,10 +12,12 @@ public class Map5Canavar : MonoBehaviour
 
     private Vector3 pointA;          // A noktası = başladığı yer
     private bool goingToB = true;
+    private CinemachineImpulseSource shake;   // W05: null = sarsıntı yok
 
     void Start()
     {
         pointA = transform.position;
+        shake = GetComponent<CinemachineImpulseSource>();   // W05
     }
 
     void Update()
@@ -43,5 +46,8 @@ public class Map5Canavar : MonoBehaviour
         push.y = 0f;
         other.attachedRigidbody.AddForce((push.normalized + Vector3.up * 0.5f) * pushForce, ForceMode.Impulse);
         Debug.Log("Canavar seni yakaladı!");
+
+        // W05: kameraya kısa bir sarsıntı gönder
+        if (shake != null) shake.GenerateImpulse();
     }
 }
