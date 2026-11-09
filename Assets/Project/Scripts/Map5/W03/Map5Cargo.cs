@@ -1,8 +1,12 @@
 using UnityEngine;
 
 // Taşınabilen kargo: oyuncunun başına çıkar, bırakılınca fiziğe döner.
+// W06: hafif mi ağır mı, bir veri dosyası (Map5CargoType) karar verir.
 public class Map5Cargo : MonoBehaviour
 {
+    // W06: hafif mi ağır mı? Bir veri dosyası söyler (CT_Map5_Hafif / CT_Map5_Agir)
+    [SerializeField] private Map5CargoType type;
+
     private Rigidbody rb;
     private Collider box;      // katı gövde
     private Collider range;    // alma alanı (trigger)
@@ -14,6 +18,19 @@ public class Map5Cargo : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         box = GetComponent<BoxCollider>();
         range = GetComponent<SphereCollider>();
+        // W06: Type kutusu boş mu? Kırmızı yazıyla söyle
+        if (type == null) Debug.LogError(name + ": Cargo Type yok");
+    }
+
+    // W06: bu kargo hakkında iki soru, cevabı türünden gelir
+    public int Points()
+    {
+        return type.Points();
+    }
+
+    public float Weight()
+    {
+        return type.Weight();
     }
 
     // Soru: "şimdi alınabilir miyim?"
