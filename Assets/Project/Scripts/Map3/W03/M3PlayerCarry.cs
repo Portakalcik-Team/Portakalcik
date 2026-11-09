@@ -5,6 +5,14 @@ public class M3PlayerCarry : MonoBehaviour
 {
     [SerializeField] private Transform carryPoint;  // oyuncunun TasimaNoktasi cocugu
     private M3Cargo carried;                      // null = eller bos
+    private Rigidbody rb;
+    private float baseMass;
+
+    void Awake()
+    {
+        rb = GetComponent<Rigidbody>();
+        baseMass = rb.mass;
+    }
 
     public bool IsCarrying()
     {
@@ -21,6 +29,7 @@ public class M3PlayerCarry : MonoBehaviour
 
         carried = cargo;
         cargo.PickUp(carryPoint);
+        rb.mass = baseMass + cargo.Weight();
     }
 
     // tehlike ve E tusu cagirir
@@ -29,6 +38,7 @@ public class M3PlayerCarry : MonoBehaviour
         if (!IsCarrying()) return;
         carried.Drop();
         carried = null;
+        rb.mass = baseMass;
     }
 
     // teslim alani cagirir
@@ -36,6 +46,7 @@ public class M3PlayerCarry : MonoBehaviour
     {
         M3Cargo cargo = carried;
         carried = null;   // eller bos
+        rb.mass = baseMass;
         return cargo;
     }
 }

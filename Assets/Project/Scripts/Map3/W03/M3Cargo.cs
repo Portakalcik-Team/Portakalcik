@@ -4,6 +4,7 @@ using UnityEngine;
 // Kok nesnede: Rigidbody, kati BoxCollider, alma alani SphereCollider (Is Trigger).
 public class M3Cargo : MonoBehaviour
 {
+    [SerializeField] private Map3_CargoType type;
     [SerializeField] private float dropForce = 3f;      // birakinca itme gucu
     [SerializeField] private float pickUpDelay = 0.5f;  // birakinca bu kadar sn alinamaz
 
@@ -12,12 +13,16 @@ public class M3Cargo : MonoBehaviour
     private SphereCollider range;   // alma alani
     private float canPickUpAt;      // tekrar alinabilecegi zaman
 
-    void Start()
+    void Awake()
     {
         rb = GetComponent<Rigidbody>();
         box = GetComponent<BoxCollider>();
         range = GetComponent<SphereCollider>();
+        if (type == null) Debug.LogError(name + ": no Cargo Type", this);
     }
+
+    public int Points() => type.Points();
+    public float Weight() => type.Weight();
 
     // simdi alinabilir mi?
     public bool CanBePickedUp()
