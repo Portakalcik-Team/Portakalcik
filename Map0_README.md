@@ -87,6 +87,31 @@ Kargoyu düşüren her tehlikede bir `CinemachineImpulseSource` var: Week 3 tehl
 | Sarsıntı | 0.5 aşağı, 0.2 s, Bump | Sadece "portakalı kaybettin" anında. Küçük tutuldu, oyuncuyu rahatsız etmesin. |
 | Rampa kamerası | 60°, 16 m, geçiş 1 s | Yukarıdan bakınca rampanın eğimi ve üstteki platform birlikte görünüyor. Rampa kısa (5 m), 2 s'lik geçiş bitmeden tırmanış başlar; 1 s yetiyor. |
 
+## 6. hafta: Kargo pedleri, hafif ve ağır kargo, skor
+
+Elle konan üç portakal (`Map0_Week3_Kargo_01–03`) yerine aynı yerlerde üç ped var: `Map0_Week6_KargoPad_01–03`. Kırmızı şeritlerin arasında bir ağır ped var: `Map0_Week6_KargoPad_Agir`. Pedler `Map0CargoSpawner` ile, pedde kargo yoksa süre dolunca yeni kargo yapıyor. Kurulum: **Map0 → Hafta 6 Kargo Pedlerini Kur**, sonra kaydet.
+
+- **Kaynak:** pedler. **Çıkış (sink):** yeşil çıkış, kargoyu siliyor ve puan veriyor (`Map0DeliveryZone`, Console'da `Teslim edildi! +3   Skor: 4`).
+- **Veri dosyaları:** `Assets/Project/Data/Map0/CT_Map0_Hafif.asset`, `CT_Map0_Agir.asset` (`Map0CargoType`, ScriptableObject).
+- **Prefab varyantı:** `Map0_Kargo_Agir`, `Map0_Kargo`'nun varyantı. Turuncu (`M_Map0_Agir`, E07B1A), daha büyük (1 m), daha yavaş ve alçak süzülüyor (0.15 m, hız 1). Sadece renge güvenmiyoruz, renk körü oyuncu da büyüklükten ayırt edebilsin.
+- **Ağırlığın bedeli:** ağır kargo oyuncunun kütlesini 1'den 2'ye çıkarıyor (`Map0PlayerCarry`). Zıplama aynı itme (4) olduğu için hız yarıya iniyor (4 m/s → 2 m/s) ve oyuncu 0.8 m yerine yaklaşık 0.2 m yükseliyor. Kırmızı şeritlerin üstünden atlanamıyor. Yürüme hızı değişmiyor, çünkü `Map0PlayerMove` hızı doğrudan ayarlıyor.
+
+### Balance notes
+
+| Ayar | Hafif | Ağır | Neden |
+|---|---|---|---|
+| Puan | 1 | 3 | Ağırı almak bir risk, karşılığı 3 kat. |
+| Ağırlık | 0 | 1 kg | Zıplamayı elinden alıyor. |
+| Geri gelme süresi | 4 s | 8 s | Ağır ped seyrek dolsun, her seferinde "şimdi mi alsam?" diye düşünülsün. |
+| Ped sayısı | 3 | 1 | Seçenek var ama arena kargoyla dolmuyor. |
+| Yer | başlangıç köşesi, yolun döndüğü köşe, rampa platformu | 3. satırda iki kırmızı şeridin arası | Ağır kargo zorunlu yolun en başında. Alırsan bütün labirent boyunca zıplayamadan taşıyorsun, kısa yolda da hareketli bloğun içinden geçiyorsun. |
+
+**Test oyuncusu (2 dakika):**
+
+| Hafif teslim | Ağır teslim | "Neden onu aldın?" | Değiştirdiğim tek sayı |
+|---|---|---|---|
+| | | | |
+
 ## Commit notu
 
 W01–W04 commitleri **geç** gönderildi.
