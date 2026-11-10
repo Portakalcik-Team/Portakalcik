@@ -1,14 +1,17 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-// Meyve ağacı: oyuncu ağacın yanındayken E'ye her basışta TEK meyve toplanır.
-// Ağaçtaki görsel meyveler (Map7_TreeLook) teker teker kaybolur; hepsi bitince ağaç boş kalır.
+// Meyve ağacı: oyuncu ağacın yanındayken imleci bir meyvenin üstüne getirip E'ye basınca O meyve toplanır.
+// Toplanan meyve bir süre sonra kendiliğinden yeniden yetişir (W06: zamanlayıcılı spawner, Instantiate).
+// Meyvenin puanı, yükü ve yetişme süresi Map7_FruitData dosyasından gelir.
 public class Map7_FruitPickup : MonoBehaviour
 {
     [SerializeField] private GameObject fruit;           // Eski tip tek küre meyve (Boş bıraksan da kendi bulur!)
     [SerializeField] private Map7_FruitType fruitType;   // ARTIK MAP7 OLDU: Limon, Mandalina, Portakal
     [SerializeField] private int amount = 2;             // Görsel meyve grubu yoksa ağaçtaki toplam meyve sayısı
     [SerializeField] private float pickInterval = 0.25f; // Üst üste toplamalar arası bekleme
+    [SerializeField] private Map7_FruitData fruitData;   // puan / yük / yetişme süresi (boşsa varsayılanlar)
 
     private Transform treeFruits;                        // Map7_TreeLook'un kurduğu görsel meyveler (varsa)
     private int fruitsLeft;                              // Ağaçta kalan meyve
@@ -18,6 +21,17 @@ public class Map7_FruitPickup : MonoBehaviour
     private Vector3 aimedBaseScale;
     private string message = "";
     private float messageTimer = 0f;
+
+    // Yeniden yetişme (spawner): toplanan meyvelerin yerleri ve geri sayım
+    private GameObject fruitTemplate;                    // kopyalanacak gizli meyve
+    private readonly List<Vector3> missingSpots = new List<Vector3>();
+    private float regrowTimer = 0f;
+
+    // Varsayılanlar (veri dosyası yoksa)
+    private int Points() { return fruitData != null ? fruitData.Points() : 1; }
+    private float Weight() { return fruitData != null ? fruitData.Weight() : 0f; }
+    private float RegrowDelay() { return fruitData != null ? fruitData.RegrowDelay() : 10f; }
+    private bool IsGolden() { return Weight() > 0f; }
 
     void Start()
     {
@@ -42,6 +56,14 @@ public class Map7_FruitPickup : MonoBehaviour
         {
             treeFruits = fruits;
             fruitsLeft = fruits.childCount;
+
+            // Yeniden yetişme için gizli bir şablon meyve sakla
+            if (fruits.childCount > 0 && fruitTemplate == null)
+            {
+                fruitTemplate = Instantiate(fruits.GetChild(0).gameObject, fruits);
+                fruitTemplate.name = "FruitTemplate";
+                fruitTemplate.SetActive(false);
+            }
         }
         else
         {
@@ -53,6 +75,17 @@ public class Map7_FruitPickup : MonoBehaviour
     {
         if (cooldown > 0f) cooldown -= Time.deltaTime;
         if (messageTimer > 0f) messageTimer -= Time.deltaTime;
+
+        // Zamanlayıcı: eksik meyve varsa süre dolunca bir tane yeniden yetişir
+        if (missingSpots.Count > 0 && fruitTemplate != null)
+        {
+            regrowTimer -= Time.deltaTime;
+            if (regrowTimer <= 0f)
+            {
+                Regrow();
+                regrowTimer = RegrowDelay();
+            }
+        }
 
         if (bagInRange == null)
         {
@@ -68,6 +101,20 @@ public class Map7_FruitPickup : MonoBehaviour
             CollectOne();
     }
 
+    // Şablondan yeni bir meyve kopyalar ve eksik yerine koyar
+    void Regrow()
+    {
+        Vector3 spot = missingSpots[0];
+        missingSpots.RemoveAt(0);
+
+        GameObject f = Instantiate(fruitTemplate, treeFruits);
+        f.name = "Fruit_Visual";
+        f.transform.localPosition = spot;
+        f.transform.localRotation = Quaternion.identity;
+        f.SetActive(true);
+        fruitsLeft++;
+    }
+
     // Kameranın ekran ortasından çıkan ışına en yakın meyveyi döndürür (yoksa null).
     Transform FindAimedFruit()
     {
@@ -79,7 +126,7 @@ public class Map7_FruitPickup : MonoBehaviour
         float bestT = float.MaxValue;
         foreach (Transform f in treeFruits)
         {
-            if (!f.gameObject.activeSelf) continue;   // toplanmış (silinmek üzere) meyveyi atla
+            if (!f.gameObject.activeSelf) continue;   // toplanmış veya şablon meyveyi atla
 
             Vector3 oc = f.position - ray.origin;
             float along = Vector3.Dot(oc, ray.direction);
@@ -129,6 +176,12 @@ public class Map7_FruitPickup : MonoBehaviour
         {
             Transform picked = aimed;
             SetAimed(null);
+            aimedBaseScale = Vector3.zero;
+
+            // Yeri hatırla: zamanlayıcı dolunca aynı yerde yeniden yetişecek
+            missingSpots.Add(picked.localPosition);
+            if (missingSpots.Count == 1) regrowTimer = RegrowDelay();
+
             picked.gameObject.SetActive(false);   // hemen gizle (Destroy aynı karenin sonunda olur)
             Destroy(picked.gameObject);
         }
@@ -138,7 +191,50 @@ public class Map7_FruitPickup : MonoBehaviour
         }
 
         bagInRange.Add(fruitType, 1);
-        Say("+1 " + fruitType + "  (ağaçta " + fruitsLeft + " kaldı)");
+
+        // Skor ve yük (Altın meyve yavaşlatır)
+        Map7_Score score = bagInRange.GetComponent<Map7_Score>();
+        if (score == null) score = bagInRange.GetComponentInParent<Map7_Score>();
+        if (score != null) score.Collect(fruitType, Points(), Weight());
+
+        Say("+" + Points() + " " + (IsGolden() ? "Altın " : "") + fruitType + "  (ağaçta " + fruitsLeft + " kaldı)");
+    }
+
+    // Map7_LevelSetup çağırır: veri atanmamış ağaca normal veriyi verir
+    public void SetDataIfEmpty(Map7_FruitData data)
+    {
+        if (fruitData == null) fruitData = data;
+    }
+
+    // Map7_LevelSetup çağırır: bu ağacı Altın Portakal ağacına çevirir (nadir, değerli, ağır, düşmana yakın)
+    public void MakeGolden(Map7_FruitData data, int fruitCount)
+    {
+        fruitData = data;
+        fruitType = Map7_FruitType.Portakal;   // kapı anahtarı ve kepçe için Portakal sayılır
+        if (treeFruits == null) return;
+
+        Color gold = new Color(1f, 0.84f, 0f);
+        Material mat = Map7_ThrownFruit.MakeMaterial(gold);
+
+        List<Transform> kids = new List<Transform>();
+        foreach (Transform f in treeFruits) kids.Add(f);
+
+        int kept = 0;
+        foreach (Transform f in kids)
+        {
+            bool isTemplate = fruitTemplate != null && f.gameObject == fruitTemplate;
+            if (!isTemplate && f.gameObject.activeSelf && kept >= fruitCount)
+            {
+                Destroy(f.gameObject);   // fazla meyveleri kaldır: Altın ağaçta az meyve olur
+                continue;
+            }
+
+            Renderer r = f.GetComponent<Renderer>();
+            if (r != null) r.sharedMaterial = mat;
+            f.localScale *= 1.25f;
+            if (!isTemplate) kept++;
+        }
+        fruitsLeft = kept;
     }
 
     void OnTriggerEnter(Collider other)
@@ -169,12 +265,13 @@ public class Map7_FruitPickup : MonoBehaviour
     void OnGUI()
     {
         string text = null;
+        string name = (IsGolden() ? "Altın " : "") + fruitType;
         if (messageTimer > 0f) text = message;
         else if (bagInRange != null)
             text = fruitsLeft <= 0
                 ? "Bu ağaçta meyve kalmadı."
                 : (treeFruits == null || aimed != null
-                    ? "[E] " + fruitType + " topla  (" + fruitsLeft + " meyve var)"
+                    ? "[E] " + name + " topla  (+" + Points() + " puan" + (IsGolden() ? ", yavaşlatır!" : "") + ")"
                     : "İmleci bir meyvenin üzerine getir  (" + fruitsLeft + " meyve var)");
         if (text == null) return;
 
@@ -182,7 +279,7 @@ public class Map7_FruitPickup : MonoBehaviour
         style.fontSize = 20;
         style.fontStyle = FontStyle.Bold;
         style.alignment = TextAnchor.MiddleCenter;
-        style.normal.textColor = Color.yellow;
+        style.normal.textColor = IsGolden() ? new Color(1f, 0.84f, 0f) : Color.yellow;
         GUI.Label(new Rect(0, Screen.height * 0.62f, Screen.width, 36), text, style);
     }
 }
