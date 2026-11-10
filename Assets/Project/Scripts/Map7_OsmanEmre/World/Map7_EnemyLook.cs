@@ -78,6 +78,18 @@ public class Map7_EnemyLook : MonoBehaviour
         else DestroyImmediate(o);
     }
 
+    // ---------- Kamera sarsıntısı (W05: Impulse) ----------
+    private float nextShakeTime = 0f;
+
+    // Düşman oyuncuya değince kamera kısa bir süre sarsılır (her saniyede en fazla bir kez).
+    void OnTriggerEnter(Collider other)
+    {
+        if (deathTimer >= 0f) return;                 // ölen düşman sarsmaz
+        if (!other.CompareTag("Player")) return;      // sadece oyuncu
+        if (Time.time < nextShakeTime) return;
+        nextShakeTime = Time.time + 1f;
+        Map7_CameraShake.Shake(0.5f);
+    }
     // ---------- Hasar (Meyve Kepçesi) ----------
     [Header("Hasar")]
     [SerializeField] private int health = 3;       // can; Portakal 2, diğerleri 1 hasar verir
@@ -90,11 +102,11 @@ public class Map7_EnemyLook : MonoBehaviour
     private System.Collections.Generic.List<MonoBehaviour> pausedMovers = new System.Collections.Generic.List<MonoBehaviour>();
 
     // Map7_ThrownFruit çağırır: fırlatılan meyve düşmana çarptı.
-    public void Hit(Map7_FruitType type)
+    public void Hit(Map7_FruitType type, int bonusDamage = 0)
     {
         if (deathTimer >= 0f) return;
 
-        int damage = type == Map7_FruitType.Portakal ? 2 : 1;
+        int damage = (type == Map7_FruitType.Portakal ? 2 : 1) + bonusDamage;
         float stun = type == Map7_FruitType.Limon ? 3f : (type == Map7_FruitType.Mandalina ? 1f : 1.5f);
 
         health -= damage;

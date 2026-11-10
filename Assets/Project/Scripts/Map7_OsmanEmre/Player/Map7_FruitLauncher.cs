@@ -131,7 +131,15 @@ public class Map7_FruitLauncher : MonoBehaviour
         if (selected == Map7_FruitType.Mandalina) speed *= 1.15f;   // hafif ve hızlı
         if (selected == Map7_FruitType.Portakal) speed *= 0.9f;     // ağır
 
-        Map7_ThrownFruit.Spawn(selected, muzzle, dir * speed, gameObject);
+        // Portakal atarken çantada Altın varsa o harcanır: Altın portakal çok daha sert vurur
+        bool golden = false;
+        if (selected == Map7_FruitType.Portakal)
+        {
+            Map7_Score sc = GetComponent<Map7_Score>();
+            if (sc != null) golden = sc.UseGolden();
+        }
+
+        Map7_ThrownFruit.Spawn(selected, muzzle, dir * speed, gameObject, golden);
         kick = 1f;
     }
 

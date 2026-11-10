@@ -14,10 +14,11 @@ public class Map7_ThrownFruit : MonoBehaviour
     private float age = 0f;
     private Transform player;
     private Map7_FruitBag bag;
+    private bool golden = false;   // Altın portakal: parlak ve çok sert vurur
 
     // ---------- Oluşturma ----------
 
-    public static Map7_ThrownFruit Spawn(Map7_FruitType type, Vector3 position, Vector3 velocity, GameObject owner)
+    public static Map7_ThrownFruit Spawn(Map7_FruitType type, Vector3 position, Vector3 velocity, GameObject owner, bool golden = false)
     {
         GameObject go = GameObject.CreatePrimitive(PrimitiveType.Sphere);
         go.name = "ThrownFruit_" + type;
@@ -42,6 +43,12 @@ public class Map7_ThrownFruit : MonoBehaviour
 
         Map7_ThrownFruit t = go.AddComponent<Map7_ThrownFruit>();
         t.type = type;
+        t.golden = golden;
+        if (golden)
+        {
+            go.transform.localScale *= 1.25f;
+            r.sharedMaterial = MakeMaterial(new Color(1f, 0.84f, 0f));
+        }
         t.rb = body;
         t.player = owner != null ? owner.transform : null;
         if (owner != null) t.bag = owner.GetComponentInParent<Map7_FruitBag>();
@@ -113,8 +120,8 @@ public class Map7_ThrownFruit : MonoBehaviour
         Map7_EnemyLook enemy = other.GetComponentInParent<Map7_EnemyLook>();
         if (enemy == null) return;
 
-        enemy.Hit(type);
-        Splat(transform.position, FruitColor(type));
+        enemy.Hit(type, golden ? 2 : 0);
+        Splat(transform.position, golden ? new Color(1f, 0.84f, 0f) : FruitColor(type));
         Destroy(gameObject);
     }
 

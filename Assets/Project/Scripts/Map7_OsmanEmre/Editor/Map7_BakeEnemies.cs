@@ -29,6 +29,17 @@ public static class Map7_BakeEnemies
     [MenuItem("Tools/Map7/Apply Enemy Visuals To Open Scene")]
     static void ApplyToSceneMenu() { ApplyToScene(true); }
 
+    // Sahnede Cinemachine kamera rig'ini (Brain, CM_Follow, CM_FirstPerson, CM_Overview, OverviewZone) kalıcı olarak kurar.
+    // Böylece kameralar Hierarchy'de görünür ve Inspector'dan ayarlanabilir (Save During Play ile).
+    [MenuItem("Tools/Map7/Setup Cinemachine Rig")]
+    static void SetupCameraRig()
+    {
+        Map7_ThirdPersonCamera cam = Object.FindFirstObjectByType<Map7_ThirdPersonCamera>();
+        if (cam == null) { Debug.LogWarning("[Map7] Sahnede Map7_ThirdPersonCamera bulunamadı (Main Camera'da olmalı)."); return; }
+        cam.EnsureRig();
+        UnityEditor.SceneManagement.EditorSceneManager.MarkAllScenesDirty();
+        Debug.Log("[Map7] Cinemachine rig kuruldu: Map7_CameraRig (CM_Follow, CM_FirstPerson, CM_Overview, OverviewZone). Ctrl+S ile kaydet.");
+    }
     static void ApplyToScene(bool log)
     {
         int count = 0;

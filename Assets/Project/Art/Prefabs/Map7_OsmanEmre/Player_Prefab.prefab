@@ -1153,6 +1153,7 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
+  - component: {fileID: 7700000000000000007}
   - component: {fileID: 7700000000000000006}
   - component: {fileID: 8207295658148345068}
   - component: {fileID: 7700000000000000005}
@@ -2481,3 +2482,20 @@ MonoBehaviour:
   maxSpeed: 22
   chargeTime: 1.1
   arc: 0.12
+--- !u!114 &7700000000000000007
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5250641397851786679}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4b6f8a0c2e34791b3d5f7a9c1e24680, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Map7_LevelSetup
+  normalData: {fileID: 11400000, guid: e5c7a9b1d3f44802c4e6a8b0d2f35791, type: 2}
+  goldenData: {fileID: 11400000, guid: f6d8b0c2e4a54913d5f7b9c1e3a46802, type: 2}
+  goldenTreeCount: 2
+  maxEnemyDistance: 12
+  goldenFruitCount: 3

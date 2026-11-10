@@ -12,6 +12,7 @@ public class Map7_PlayerMove : MonoBehaviour
     private InputAction moveAction;
     private Vector3 direction;   // where the input points
     private float grip = 1f;     // 1 = normal ground
+    private float speedMultiplier = 1f;   // 1 = normal; Altın (ağır) meyve taşıyınca düşer
  
     void Start()
     {
@@ -37,7 +38,7 @@ public class Map7_PlayerMove : MonoBehaviour
     void FixedUpdate()
     {
         // speed we want, speed we have (not up/down)
-        Vector3 wanted = direction * maxSpeed;
+        Vector3 wanted = direction * maxSpeed * speedMultiplier;
         Vector3 v = rb.linearVelocity;
         Vector3 flat = new Vector3(v.x, 0f, v.z);
  
@@ -55,6 +56,12 @@ public class Map7_PlayerMove : MonoBehaviour
     }
  
     // the icy ramp calls this
+    // Map7_Score çağırır: ağır yük taşıyınca oyuncu yavaşlar
+    public void SetSpeedMultiplier(float value)
+    {
+        speedMultiplier = value;
+    }
+
     public void SetGrip(float value)
     {
         grip = value;
