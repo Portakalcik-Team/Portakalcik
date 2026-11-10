@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class Map0Cargo : MonoBehaviour
 {
+    [SerializeField] private Map0CargoType type; // hafif mi ağır mı? veri dosyası karar verir
+
     private Rigidbody rb;
     private Collider box;      // katı gövde
     private Collider range;    // alma alanı (trigger)
@@ -13,7 +15,12 @@ public class Map0Cargo : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         box = GetComponent<BoxCollider>();
         range = GetComponent<SphereCollider>();
+        if (type == null) Debug.LogError(name + ": Cargo Type yok");
     }
+
+    public int Points() { return type.Points(); }
+
+    public float Weight() { return type.Weight(); }
 
     // soru: "şimdi alınabilir miyim?"
     public bool CanBePickedUp()
