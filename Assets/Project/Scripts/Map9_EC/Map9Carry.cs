@@ -7,6 +7,14 @@ public class Map9Carry : MonoBehaviour
     [SerializeField] private Transform carryPoint;
 
     private Map9Portakal carried;    // null = eller boş
+    private Rigidbody rb;
+    private float baseMass;          // portakalsız kütle
+
+    void Start()
+    {
+        rb = GetComponent<Rigidbody>();
+        baseMass = rb.mass;
+    }
 
     public bool IsCarrying()
     {
@@ -23,6 +31,7 @@ public class Map9Carry : MonoBehaviour
 
         carried = portakal;
         portakal.PickUp(carryPoint);
+        rb.mass = baseMass + portakal.Weight();   // ağır portakal zıplamayı düşürür
         Debug.Log("Portakal elinde — çıkışa götür!");
     }
 
@@ -32,6 +41,7 @@ public class Map9Carry : MonoBehaviour
         if (!IsCarrying()) return;
         carried.Drop();
         carried = null;
+        rb.mass = baseMass;
         Debug.Log("Portakal düştü! Geri al.");
     }
 
@@ -40,6 +50,7 @@ public class Map9Carry : MonoBehaviour
     {
         Map9Portakal portakal = carried;
         carried = null;
+        rb.mass = baseMass;
         return portakal;
     }
 }

@@ -3,6 +3,8 @@ using UnityEngine;
 // Seviye 9: elde taşınan portakal, çıkışta teslim
 public class Map9Portakal : MonoBehaviour
 {
+    [SerializeField] private Map9PortakalType type;   // puan ve ağırlık burada
+
     private Rigidbody rb;
     private Collider box;        // katı gövde
     private Collider range;      // alma alanı (trigger)
@@ -14,6 +16,18 @@ public class Map9Portakal : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         box = GetComponent<BoxCollider>();
         range = GetComponent<SphereCollider>();
+        if (type == null) Debug.LogError(name + ": Portakal Type yok");
+    }
+
+    // puanı ve ağırlığı türüne sor
+    public int Points()
+    {
+        return type.Points();
+    }
+
+    public float Weight()
+    {
+        return type.Weight();
     }
 
     // bir soru: "şu an alınabilir miyim?"
