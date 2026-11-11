@@ -3,7 +3,7 @@ using UnityEngine;
 // Portakalcık temasına uygun sevimli narenciye karakteri ve prosedürel animasyonları
 public class Map6PlayerVisuals : MonoBehaviour
 {
-    [Header("Portakalcık Teması Renkleri")]
+    [Header("Portakalcık Teması Renk Özelliği")]
     [SerializeField] private Color bodyColor = new Color(0.98f, 0.52f, 0.08f); // Canlı narenciye turuncusu
     [SerializeField] private Color skinColor = new Color(1.0f, 0.88f, 0.74f); // Tatlı ten rengi
     [SerializeField] private Color eyeColor = new Color(0.12f, 0.12f, 0.16f); // Koyu gözler
@@ -11,7 +11,7 @@ public class Map6PlayerVisuals : MonoBehaviour
     [SerializeField] private Color leafColor = new Color(0.25f, 0.82f, 0.28f);// Başındaki yeşil filiz yaprak
     [SerializeField] private Color beltColor = new Color(0.40f, 0.25f, 0.12f);// Bel kemeri
 
-    [Header("FPS Görünüm Ayarı")]
+    [Header("FPS Görünüm (Kafa Gizleme) Özelliği")]
     [SerializeField] private bool hideHeadInFirstPerson = true; // Kafanın FPS kamerasını engellemesini önler
 
     private Transform visualContainer;
@@ -57,7 +57,7 @@ public class Map6PlayerVisuals : MonoBehaviour
             leftFoot = existing.Find("LeftFoot");
             rightFoot = existing.Find("RightFoot");
             head = existing.Find("Head");
-            if (hideHeadInFirstPerson && head != null) head.gameObject.SetActive(false);
+            if (head != null) head.gameObject.SetActive(!hideHeadInFirstPerson);
             return;
         }
 
@@ -181,9 +181,19 @@ public class Map6PlayerVisuals : MonoBehaviour
         rFoot.GetComponent<Renderer>().material = shoeMat;
 
         // FPS modunda kafanın kamerayı engellemesini önle
-        if (hideHeadInFirstPerson && head != null)
+        if (head != null)
         {
-            head.gameObject.SetActive(false);
+            head.gameObject.SetActive(!hideHeadInFirstPerson);
+        }
+    }
+
+    // Kamera modu geçişinde kafayı gösterir veya gizler
+    public void SetHeadVisible(bool visible)
+    {
+        hideHeadInFirstPerson = !visible;
+        if (head != null)
+        {
+            head.gameObject.SetActive(visible);
         }
     }
 

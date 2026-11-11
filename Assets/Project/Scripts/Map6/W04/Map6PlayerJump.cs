@@ -4,7 +4,10 @@ using UnityEngine.InputSystem;
 // Oyuncunun zemin kontrolüyle zıplamasını yönetir
 public class Map6PlayerJump : MonoBehaviour
 {
+    [Header("Zıplama Gücü Özelliği")]
     [SerializeField] private float jumpForce = 4f;
+
+    [Header("Zemin Algılama Katmanı Özelliği")]
     [SerializeField] private LayerMask groundLayers; // Sadece Ground katmanı
 
     private Rigidbody rb;

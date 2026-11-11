@@ -4,9 +4,14 @@ using UnityEngine.InputSystem;
 // Oyuncunun ivmeli, fizik tabanlı hareketini ve yönelimini kontrol eder
 public class Map6PlayerMove : MonoBehaviour
 {
+    [Header("Hız ve İvme Özelliği")]
     [SerializeField] private float maxSpeed = 5f;
     [SerializeField] private float acceleration = 40f;
+
+    [Header("Dönüş Hızı Özelliği")]
     [SerializeField] private float turnSpeed = 720f;
+
+    [Header("Kamera Modu Özelliği")]
     [SerializeField] private bool firstPersonMode = true; // Birinci şahıs bağıl hareket
 
     private Rigidbody rb;
@@ -126,6 +131,12 @@ public class Map6PlayerMove : MonoBehaviour
             look = Quaternion.RotateTowards(rb.rotation, look, turn);
             rb.MoveRotation(look);
         }
+    }
+
+    // FPS / Kuşbakışı hareket modunu değiştirir
+    public void SetFirstPersonMode(bool enabled)
+    {
+        firstPersonMode = enabled;
     }
 
     // Buzlu zemin veya rampa tutuşu değiştirmek için çağırır

@@ -3,6 +3,7 @@ using UnityEngine;
 // Katı buzlu yüzeylerde oyuncunun zemin tutuşunu düşürür
 public class Map6Slippery : MonoBehaviour
 {
+    [Header("Buz Tutuş Katsayısı Özelliği")]
     [SerializeField] private float grip = 0.04f; // Buz tutuş katsayısı
 
     // Yüzeye temas başladığında

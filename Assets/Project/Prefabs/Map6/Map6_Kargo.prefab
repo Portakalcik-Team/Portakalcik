@@ -117,6 +117,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa3d141c6b88adb4b8527f01c46daa10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Map6Cargo
+  type: {fileID: 11400000, guid: 6a061005000500050005000000000001, type: 2}
+  dropForce: 3
+  pickUpCooldown: 0.5
 --- !u!1 &7209082936365285552
 GameObject:
   m_ObjectHideFlags: 0
