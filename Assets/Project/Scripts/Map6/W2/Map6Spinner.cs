@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class Map6Spinner : MonoBehaviour
 {
+    [Header("Dönüş Hızı (Spinner) Özelliği")]
     // Derece / saniye cinsinden dönüş hızı
     [SerializeField] private float rotationSpeed = 90f;
 

@@ -3,6 +3,13 @@ using UnityEngine;
 // Kargo nesnesinin taşınma ve fiziksel davranışlarını yönetir
 public class Map6Cargo : MonoBehaviour
 {
+    [Header("Kargo Tipi Özelliği")]
+    [SerializeField] private Map6CargoType type = null;
+
+    [Header("Kargo Bırakma Özelliği")]
+    [SerializeField] private float dropForce = 3f;
+    [SerializeField] private float pickUpCooldown = 0.5f;
+
     private Rigidbody rb;
     private BoxCollider box;       // Katı çarpışma gövdesi
     private SphereCollider range;  // Alma tetikleyici alanı
@@ -10,6 +17,8 @@ public class Map6Cargo : MonoBehaviour
 
     void Awake()
     {
+        if (type == null) Debug.LogError(name + ": no Cargo Type");
+
         rb = GetComponent<Rigidbody>();
         box = GetComponent<BoxCollider>();
         range = GetComponent<SphereCollider>();
@@ -23,6 +32,16 @@ public class Map6Cargo : MonoBehaviour
                 c.enabled = false;
             }
         }
+    }
+
+    public int Points()
+    {
+        return type != null ? type.points : 1;
+    }
+
+    public float Weight()
+    {
+        return type != null ? type.weight : 0f;
     }
 
     // Kargo şu anda alınabilir mi kontrolü
@@ -63,12 +82,16 @@ public class Map6Cargo : MonoBehaviour
             rb.detectCollisions = true;
             rb.isKinematic = false; // Fiziği tekrar aç
 
-            // İleriye ve yukarıya hafif itiş ver (baktığı yöne doğru)
-            Vector3 push = (transform.forward + Vector3.up * 0.5f).normalized;
-            rb.AddForce(push * 3f, ForceMode.Impulse);
+            // İleriye ve yukarıya hafif itiş ver (baktığı yatay yöne doğru)
+            Vector3 flatForward = Vector3.ProjectOnPlane(transform.forward, Vector3.up);
+            if (flatForward.sqrMagnitude < 0.001f) flatForward = Vector3.forward;
+            else flatForward.Normalize();
+
+            Vector3 push = (flatForward + Vector3.up * 0.5f).normalized;
+            rb.AddForce(push * dropForce, ForceMode.Impulse);
         }
 
-        // 0.5 saniye boyunca hemen tekrar alınamasın
-        canPickUpAt = Time.time + 0.5f;
+        // Bırakma sonrası kısa süreliğine hemen tekrar alınamasın
+        canPickUpAt = Time.time + pickUpCooldown;
     }
 }

@@ -3,8 +3,17 @@ using UnityEngine;
 // Oyuncunun kargo taşıma, düşürme ve teslim etme mekaniği
 public class Map6PlayerCarry : MonoBehaviour
 {
+    [Header("Kargo Taşıma Özelliği")]
     [SerializeField] private Transform carryPoint;
     private Map6Cargo carried; // Boşsa eller serbest
+    private Rigidbody rb;
+    private float baseMass = 1f;
+
+    void Start()
+    {
+        rb = GetComponent<Rigidbody>();
+        if (rb != null) baseMass = rb.mass;
+    }
 
     void Awake()
     {
@@ -53,6 +62,7 @@ public class Map6PlayerCarry : MonoBehaviour
 
         carried = cargo;
         cargo.PickUp(carryPoint);
+        if (rb != null) rb.mass = baseMass + cargo.Weight();
     }
 
     // Tehlike veya bırakma tuşu çağırır
@@ -62,6 +72,7 @@ public class Map6PlayerCarry : MonoBehaviour
 
         carried.Drop();
         carried = null;
+        if (rb != null) rb.mass = baseMass;
     }
 
     // Yeşil teslimat alanı çağırır
@@ -69,6 +80,7 @@ public class Map6PlayerCarry : MonoBehaviour
     {
         Map6Cargo cargo = carried;
         carried = null; // Eller tekrar boş
+        if (rb != null) rb.mass = baseMass;
         return cargo;
     }
 }
