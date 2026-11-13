@@ -1,58 +1,75 @@
 using UnityEngine;
-
 using UnityEngine.InputSystem;
 
 public class M10PlayerJump : MonoBehaviour
-
 {
+    [SerializeField] private float jumpForce = 5.8f; // Canavarın üstünden aşmak için yeterli güç
+    [SerializeField] private LayerMask groundLayers;
 
-[SerializeField] private float jumpForce = 4f;
+    private Rigidbody rb;
+    private InputAction jumpAction;
 
-// which layers count as ground: set it to Ground!
+    void Start()
+    {
+        rb = GetComponent<Rigidbody>();
+        if (InputSystem.actions != null)
+        {
+            jumpAction = InputSystem.actions.FindAction("Jump");
+        }
+    }
 
-[SerializeField] private LayerMask groundLayers;
+    void Update()
+    {
+        bool jumpPressed = false;
 
-private Rigidbody rb;
+        if (jumpAction != null && jumpAction.WasPressedThisFrame())
+        {
+            jumpPressed = true;
+        }
+        else if (Keyboard.current != null && Keyboard.current.spaceKey.wasPressedThisFrame)
+        {
+            jumpPressed = true;
+        }
+        else
+        {
+            try
+            {
+                if (Input.GetKeyDown(KeyCode.Space)) jumpPressed = true;
+            }
+            catch { }
+        }
 
-private InputAction jumpAction;
+        if (!jumpPressed) return;
 
-void Start()
+        if (!IsGrounded()) return;
 
-{
+        // Yukarı zıplat
+        if (rb != null)
+        {
+            Vector3 v = rb.linearVelocity;
+            v.y = jumpForce;
+            rb.linearVelocity = v;
+        }
+    }
 
-rb = GetComponent<Rigidbody>();
+    private bool IsGrounded()
+    {
+        // 1. Raycast kontrolü
+        if (Physics.Raycast(transform.position, Vector3.down, 1.25f))
+        {
+            return true;
+        }
 
-jumpAction = InputSystem.actions.FindAction("Jump");
+        // 2. Altımızda canavar veya zemin var mı (SphereCast ile geniş taban kontrolü)
+        RaycastHit hit;
+        if (Physics.SphereCast(transform.position, 0.35f, Vector3.down, out hit, 1.1f))
+        {
+            if (hit.collider != null && hit.collider.gameObject != gameObject)
+            {
+                return true;
+            }
+        }
 
-}
-void Update()
-
-{
-
-// only in the frame Space / South button goes down
-
-if (!jumpAction.WasPressedThisFrame()) return;
-
-if (!IsGrounded()) return; // no jumping in the air
-
-// one short kick upwards
-
-rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-
-}
-
-// is there Ground right under our feet?
-
-bool IsGrounded()
-
-{
-
-// from our middle, 1.1 m down: half our height + 0.1
-
-return Physics.Raycast(transform.position, Vector3.down,
-
-1.1f, groundLayers);
-
-}
-
+        return false;
+    }
 }
