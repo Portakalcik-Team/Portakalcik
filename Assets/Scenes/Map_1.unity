@@ -1606,7 +1606,7 @@ Transform:
   m_Children:
   - {fileID: 537565389}
   - {fileID: 1031025233}
-  m_Father: {fileID: 856264552}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &207694176
 GameObject:
@@ -4178,7 +4178,7 @@ Transform:
   - {fileID: 723890308}
   - {fileID: 1537235964}
   - {fileID: 1456684714}
-  m_Father: {fileID: 856264552}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &411186957
 GameObject:
@@ -4292,6 +4292,54 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 411186957}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &420466526
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 420466528}
+  - component: {fileID: 420466527}
+  m_Layer: 0
+  m_Name: MeyvePed_Mandalina
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &420466527
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 420466526}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c45346a5b852ab3438a00af76f978e5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::M1FruitSpawner
+  type: {fileID: 11400000, guid: 865a8bb152380384aa966a0cc44bd131, type: 2}
+  delay: 4
+  dropFromHeight: 1
+  prefab: {fileID: 0}
+--- !u!4 &420466528
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 420466526}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 12, y: 2.5, z: -15}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &445593662
 GameObject:
   m_ObjectHideFlags: 0
@@ -4786,7 +4834,7 @@ MonoBehaviour:
   labirentMuhafizPrefab: {fileID: 0}
   spawnParent: {fileID: 0}
   wallHeight: 1.5
-  generateOnStart: 1
+  generateOnStart: 0
 --- !u!4 &470826606
 Transform:
   m_ObjectHideFlags: 0
@@ -4799,8 +4847,7 @@ Transform:
   m_LocalPosition: {x: 0, y: -0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 856264552}
+  m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &498976161
@@ -7403,7 +7450,7 @@ Transform:
   - {fileID: 605412390}
   - {fileID: 498976162}
   - {fileID: 77013297}
-  m_Father: {fileID: 856264552}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &618200472
 GameObject:
@@ -9981,44 +10028,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 852086411}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &856264551
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 856264552}
-  m_Layer: 0
-  m_Name: GeneratedMap
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &856264552
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 856264551}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 611560491}
-  - {fileID: 409839942}
-  - {fileID: 1182079468}
-  - {fileID: 1169863062}
-  - {fileID: 196905661}
-  - {fileID: 1625088212}
-  - {fileID: 960650235}
-  m_Father: {fileID: 470826606}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &898435294
 GameObject:
   m_ObjectHideFlags: 0
@@ -10499,7 +10508,7 @@ Transform:
   m_LocalScale: {x: 2, y: 3, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 856264552}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &960650236
 BoxCollider:
@@ -11733,7 +11742,7 @@ Transform:
   - {fileID: 1680034346}
   - {fileID: 278625295}
   - {fileID: 207694177}
-  m_Father: {fileID: 856264552}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1174679406
 GameObject:
@@ -11748,6 +11757,8 @@ GameObject:
   - component: {fileID: 1174679408}
   - component: {fileID: 1174679407}
   - component: {fileID: 1174679411}
+  - component: {fileID: 1174679412}
+  - component: {fileID: 1174679413}
   m_Layer: 0
   m_Name: Camera
   m_TagString: MainCamera
@@ -11882,15 +11893,56 @@ MonoBehaviour:
   m_GameObject: {fileID: 1174679406}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bfd04a5673c061446abcd94f113caecd, type: 3}
+  m_Script: {fileID: 11500000, guid: 4823e3ab200376846a2234a17a101c17, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CameraFollow
-  target: {fileID: 0}
-  offset: {x: 0, y: 11, z: -7}
-  lookOffset: {x: 0, y: 0.8, z: 0}
-  followSmoothness: 8
-  rotationSmoothness: 10
-  fieldOfView: 45
+  m_EditorClassIdentifier: Assembly-CSharp::M1FirstPersonCamera
+  player: {fileID: 0}
+  headHeight: 0.7
+  mouseSensitivity: 0.15
+  maxLookUp: 80
+--- !u!114 &1174679412
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1174679406}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43e119f141a97464bad69297c8db3642, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::M1TreeDecorator
+  treePrefixes:
+  - limon
+  - mandalina
+  - portakal
+  enemyPrefixes:
+  - diken
+  - yarasa
+  - tilki
+  - golem
+  - muhafiz
+  trunkColor: {r: 0.4, g: 0.26, b: 0.13, a: 1}
+  leafColor: {r: 0.2, g: 0.55, b: 0.22, a: 1}
+  trunkHeight: 1.3
+  trunkRadius: 0.18
+  crownSize: 1.8
+  fruitCount: 7
+  fruitSize: 0.28
+--- !u!114 &1174679413
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1174679406}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f4a5e6ecfb7a204c8dce5b9bfc1b836, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::M1HitShake
+  strength: 0.5
+  duration: 0.2
 --- !u!1 &1182079467
 GameObject:
   m_ObjectHideFlags: 0
@@ -11922,7 +11974,7 @@ Transform:
   m_Children:
   - {fileID: 505273626}
   - {fileID: 1001834762}
-  m_Father: {fileID: 856264552}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1183310297
 GameObject:
@@ -16191,11 +16243,12 @@ GameObject:
   - component: {fileID: 1625088212}
   - component: {fileID: 1625088215}
   - component: {fileID: 1625088214}
-  - component: {fileID: 1625088213}
-  - component: {fileID: 1625088217}
   - component: {fileID: 1625088218}
-  - component: {fileID: 1625088219}
   - component: {fileID: 1625088220}
+  - component: {fileID: 1625088222}
+  - component: {fileID: 1625088223}
+  - component: {fileID: 1625088224}
+  - component: {fileID: 1625088225}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -16212,33 +16265,12 @@ Transform:
   m_GameObject: {fileID: 1625088211}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 16.51, y: 0.62, z: -21.97}
+  m_LocalPosition: {x: 16.51, y: 1.3, z: -21.97}
   m_LocalScale: {x: 1, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 856264552}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &1625088213
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1625088211}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1625088214
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -16296,36 +16328,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1625088211}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &1625088217
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1625088211}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e49c1723b5c642e43bdaf49409ae81bb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerTrigger
-  treePrefixes:
-  - limon
-  - mandalina
-  - portakal
-  enemyPrefixes:
-  - diken
-  - yarasa
-  - tilki
-  - golem
-  - muhafiz
-  - enemy
-  exitPrefixes:
-  - exit
-  - cikis
-  hp: 100
-  damage: 4
-  hurtCooldown: 1
-  toplananAgac: 0
 --- !u!54 &1625088218
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -16348,24 +16350,11 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 0
+  m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 116
+  m_Interpolate: 1
+  m_Constraints: 112
   m_CollisionDetection: 1
---- !u!114 &1625088219
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1625088211}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 98aaf4a543af08345bfa5faca6966279, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerMove
-  speed: 5
 --- !u!114 &1625088220
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16380,6 +16369,96 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerJump
   jumpHeight: 1
   groundCheckExtra: 0.15
+--- !u!114 &1625088222
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1625088211}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e49c1723b5c642e43bdaf49409ae81bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::M1PlayerTrigger
+  treePrefixes:
+  - limon
+  - mandalina
+  - portakal
+  enemyPrefixes:
+  - diken
+  - yarasa
+  - tilki
+  - golem
+  - muhafiz
+  - enemy
+  exitPrefixes:
+  - exit
+  - cikis
+  hp: 100
+  damage: 4
+  hurtCooldown: 1
+  mandalinaPerTree: 6
+  portakalPerTree: 2
+  limonPerTree: 2
+  requireOrange: 1
+  parTime: 120
+  mandalina: 0
+  portakal: 0
+  limon: 0
+  selectedFruit: 0
+--- !u!114 &1625088223
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1625088211}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0f8823d6cf828a4693a357f9f374449, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::M1PlayerMove
+  speed: 5
+--- !u!114 &1625088224
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1625088211}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0710ce719e7a5284f98c6f9efbafe63b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::M1PlayerThrow
+  throwSpeed: 18
+  cooldown: 0.3
+  damage: 3
+  fruitSize: 0.3
+--- !u!136 &1625088225
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1625088211}
+  m_Material: {fileID: 13400000, guid: 6ed56fcf0f64643408f916d0763e8e9b, type: 2}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.4
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1642142736
 GameObject:
   m_ObjectHideFlags: 0
@@ -20636,6 +20715,54 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2054900628}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &2072377681
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2072377683}
+  - component: {fileID: 2072377682}
+  m_Layer: 0
+  m_Name: MeyvePed_Portakal
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2072377682
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2072377681}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c45346a5b852ab3438a00af76f978e5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::M1FruitSpawner
+  type: {fileID: 11400000, guid: a9f1d00cd030b8c4f9e15fac45e73219, type: 2}
+  delay: 8
+  dropFromHeight: 1
+  prefab: {fileID: 0}
+--- !u!4 &2072377683
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2072377681}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3, y: 2.5, z: -33}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2080211465
 GameObject:
   m_ObjectHideFlags: 0
@@ -21091,3 +21218,12 @@ SceneRoots:
   - {fileID: 586508314}
   - {fileID: 1174679410}
   - {fileID: 470826606}
+  - {fileID: 611560491}
+  - {fileID: 409839942}
+  - {fileID: 1182079468}
+  - {fileID: 1169863062}
+  - {fileID: 196905661}
+  - {fileID: 960650235}
+  - {fileID: 1625088212}
+  - {fileID: 2072377683}
+  - {fileID: 420466528}
