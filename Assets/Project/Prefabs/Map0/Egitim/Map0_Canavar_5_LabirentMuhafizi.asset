@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0dbe4d28704af4b6498dd0547a7a3f7f, type: 3}
+  m_Name: Map0_Canavar_5_LabirentMuhafizi
+  m_EditorClassIdentifier: Assembly-CSharp::Map0MonsterData
+  monsterName: "Labirent Muhaf\u0131z\u0131"
+  shape: 4
+  firstLevel: Seviye 9
+  speedRatio: 0.7
+  attackInterval: 1.8
+  hpLevel1: 24
+  damageLevel1: 12
+  trait: "Boss. \xC7\u0131k\u0131\u015Fa en yak\u0131n k\u0131sayolu korur."
+  tip: "\xD6nce a\u011Fa\xE7lar\u0131 topla, sonra kar\u015F\u0131s\u0131na \xE7\u0131k."
+  color: {r: 0.5411765, g: 0.56078434, b: 0.6, a: 1}

@@ -6011,7 +6011,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: eadb8eaef8e4a3140a6166de3c28b384, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerTrigger
+  m_EditorClassIdentifier: Assembly-CSharp::Map7_PlayerTrigger
   message: "Ahhh! Yand\u0131\u0131nn!"
   removeAfter: 0
 --- !u!54 &124172268
@@ -25090,7 +25090,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: eadb8eaef8e4a3140a6166de3c28b384, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerTrigger
+  m_EditorClassIdentifier: Assembly-CSharp::Map7_PlayerTrigger
   message: Level complete!
   removeAfter: 0
 --- !u!65 &525498721
@@ -26422,7 +26422,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: eadb8eaef8e4a3140a6166de3c28b384, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerTrigger
+  m_EditorClassIdentifier: Assembly-CSharp::Map7_PlayerTrigger
   message: "Ahhh! Yand\u0131\u0131nn!"
   removeAfter: 0
 --- !u!54 &544901640
@@ -36056,7 +36056,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: eadb8eaef8e4a3140a6166de3c28b384, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerTrigger
+  m_EditorClassIdentifier: Assembly-CSharp::Map7_PlayerTrigger
   message: "Ahhh! Yand\u0131\u0131nn!"
   removeAfter: 0
 --- !u!65 &737988198
@@ -36499,7 +36499,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: eadb8eaef8e4a3140a6166de3c28b384, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerTrigger
+  m_EditorClassIdentifier: Assembly-CSharp::Map7_PlayerTrigger
   message: "Ahhh! Yand\u0131\u0131nn!"
   removeAfter: 0
 --- !u!65 &745447006
@@ -41744,7 +41744,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: eadb8eaef8e4a3140a6166de3c28b384, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerTrigger
+  m_EditorClassIdentifier: Assembly-CSharp::Map7_PlayerTrigger
   message: "Ahhh! Yand\u0131\u0131nn!"
   removeAfter: 0
 --- !u!54 &846177960

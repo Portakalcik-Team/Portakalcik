@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5800000000000000003}
   - component: {fileID: 5800000000000000004}
   - component: {fileID: 5800000000000000009}
+  - component: {fileID: 5800000000000000010}
   m_Layer: 0
   m_Name: Map5_Tehlike
   m_TagString: Untagged
@@ -172,3 +173,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8897644c01c44063881f0a1149e44e1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Map5Hazard
+--- !u!114 &5800000000000000010
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5800000000000000001}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 180ecf9b41d478f468eb3e9083753217, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ImpulseDefinition:
+    ImpulseChannel: 1
+    ImpulseShape: 2
+    ImpulseDuration: 0.2
+    ImpulseType: 0
+    DissipationRate: 0.25
+    RawSignal: {fileID: 0}
+    AmplitudeGain: 1
+    FrequencyGain: 1
+    RepeatMode: 0
+    Randomize: 1
+    ImpactRadius: 100
+    DissipationDistance: 100
+    PropagationSpeed: 343
+  DefaultVelocity: {x: 0, y: -0.5, z: 0}
