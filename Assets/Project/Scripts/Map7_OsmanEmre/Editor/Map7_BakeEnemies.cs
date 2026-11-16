@@ -7,7 +7,7 @@ using UnityEngine;
 [InitializeOnLoad]
 public static class Map7_BakeEnemies
 {
-    const string PrefabFolder = "Assets/Project/Prefabs/Map7_OsmanEmre";
+    const string PrefabFolder = "Assets/Project/Art/Prefabs/Map7_OsmanEmre";
 
     static Map7_BakeEnemies()
     {

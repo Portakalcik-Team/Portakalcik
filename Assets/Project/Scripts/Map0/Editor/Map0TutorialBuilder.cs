@@ -6,7 +6,7 @@ using UnityEditor.SceneManagement;
 public static class Map0TutorialBuilder
 {
     private const string RootName = "Map0_Egitim";
-    private const string FolderPath = "Assets/Project/Prefabs/Map0/Egitim";
+    private const string FolderPath = "Assets/Project/Art/Prefabs/Map0/Egitim";
 
     [MenuItem("Map0/Eğitimi Kur")]
     public static void Build()
@@ -22,7 +22,7 @@ public static class Map0TutorialBuilder
         // asset klasörü yoksa oluştur
         if (!AssetDatabase.IsValidFolder(FolderPath))
         {
-            AssetDatabase.CreateFolder("Assets/Project/Prefabs/Map0", "Egitim");
+            AssetDatabase.CreateFolder("Assets/Project/Art/Prefabs/Map0", "Egitim");
         }
 
         // 1) canavar veri dosyalarını oluştur / güncelle

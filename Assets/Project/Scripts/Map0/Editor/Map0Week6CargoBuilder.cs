@@ -8,8 +8,8 @@ public static class Map0Week6CargoBuilder
     const string DataFolder = "Assets/Project/Data/Map0";
     const string HafifPath = "Assets/Project/Data/Map0/CT_Map0_Hafif.asset";
     const string AgirPath = "Assets/Project/Data/Map0/CT_Map0_Agir.asset";
-    const string BasePrefabPath = "Assets/Project/Prefabs/Map0/Map0_Kargo.prefab";
-    const string VariantPath = "Assets/Project/Prefabs/Map0/Map0_Kargo_Agir.prefab";
+    const string BasePrefabPath = "Assets/Project/Art/Prefabs/Map0/Map0_Kargo.prefab";
+    const string VariantPath = "Assets/Project/Art/Prefabs/Map0/Map0_Kargo_Agir.prefab";
     const string AgirMatPath = "Assets/Project/Art/Materials/Map0/M_Map0_Agir.mat";
 
     [MenuItem("Map0/Hafta 6 Kargo Pedlerini Kur")]
