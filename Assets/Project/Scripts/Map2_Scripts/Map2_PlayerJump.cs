@@ -14,6 +14,8 @@ public class Map2_PlayerJump : MonoBehaviour
     }
     void Update()
     {
+        // the round is over (time stopped): no jumping
+        if (Time.timeScale == 0f) return;
         // only in the frame Space / South button goes down
         if (!jumpAction.WasPressedThisFrame()) return;
         if (!IsGrounded()) return;   // no jumping in the air

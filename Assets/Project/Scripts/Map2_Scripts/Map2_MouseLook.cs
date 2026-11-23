@@ -23,6 +23,9 @@ public class Map2_MouseLook : MonoBehaviour
 
     void Update()
     {
+        // the round is over (time stopped): Update still runs, but the view must not turn
+        if (Time.timeScale == 0f) return;
+
         Vector2 raw = lookAction.ReadValue<Vector2>();
 
         // a mouse gives pixels moved this frame; a stick gives -1..+1 that must be turned into degrees per second

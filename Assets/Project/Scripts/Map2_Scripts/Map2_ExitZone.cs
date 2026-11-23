@@ -2,17 +2,22 @@ using UnityEngine;
 
 public class Map2_ExitZone : MonoBehaviour
 {
-    private bool finished = false;   // the map ends once
+    // the Round ends the map and pays the time bonus
+    [SerializeField] private Map2_Round round;
+
+    void Start()
+    {
+        if (round == null) Debug.LogError(name + ": the Round slot is empty - run Tools > Map 2 > W07 Setup");
+    }
 
     void OnTriggerEnter(Collider other)
     {
-        // Who? only something that carries a fruit bag - the player
-        Map2_FruitBag bag = other.GetComponent<Map2_FruitBag>();
-        if (bag == null) return;
-        if (finished) return;
+        if (round == null) return;
 
-        // Act: the map is done - show the score and the oranges left in the bag
-        finished = true;
-        Debug.Log("Map 2 complete! Score: " + bag.Score() + "   Oranges: " + bag.Count(Map2_FruitType.Orange));
+        // Who? only something that carries a fruit bag - the player
+        if (other.GetComponent<Map2_FruitBag>() == null) return;
+
+        // Act: the map is done (the Round makes sure it ends only once)
+        round.ExitReached();
     }
 }
