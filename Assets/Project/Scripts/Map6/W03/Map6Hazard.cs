@@ -1,9 +1,12 @@
 using UnityEngine;
 using Unity.Cinemachine;
 
-// Tehlike alanına veya engeline çarpıldığında oyuncunun kargosunu düşürür
+// Tehlike alanına veya canavara çarpıldığında oyuncunun kargosunu düşürür ve (varsa) hasar verir
 public class Map6Hazard : MonoBehaviour
 {
+    [Header("Hasar Özelliği")]
+    [SerializeField] private int damage = 0;
+
     [Header("Kamera Sarsıntısı (Impulse) Özelliği")]
     [SerializeField] private CinemachineImpulseSource shake = null;
 
@@ -14,16 +17,35 @@ public class Map6Hazard : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        // Gelen nesnede veya ebeveyninde Map6PlayerCarry ara
+        bool hitSomething = false;
+
+        // Kargo taşıyorsa düşür
         Map6PlayerCarry carry = other.GetComponent<Map6PlayerCarry>();
         if (carry == null) carry = other.GetComponentInParent<Map6PlayerCarry>();
 
-        if (carry == null) return;
-        if (!carry.IsCarrying()) return;
+        if (carry != null && carry.IsCarrying())
+        {
+            carry.DropCargo();
+            hitSomething = true;
+            Debug.Log(name + " kargoyu düşürdü!");
+        }
 
-        // Kargoyu düşür, sarsıntı tetikle ve konsola bildir
-        carry.DropCargo();
-        if (shake != null) shake.GenerateImpulse();
-        Debug.Log(name + " kargoyu düşürdü!");
+        // Hasar tanımlıysa (canavarlar) oyuncunun canından düş
+        if (damage > 0)
+        {
+            Map6Health health = other.GetComponent<Map6Health>();
+            if (health == null) health = other.GetComponentInParent<Map6Health>();
+
+            if (health != null)
+            {
+                health.TakeDamage(damage);
+                hitSomething = true;
+            }
+        }
+
+        if (hitSomething && shake != null)
+        {
+            shake.GenerateImpulse();
+        }
     }
 }

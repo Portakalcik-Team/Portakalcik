@@ -1,10 +1,10 @@
 using UnityEngine;
 
-// Yeşil teslimat alanına kargo getirildiğinde kargoyu kabul eder
+// Yeşil teslimat alanına kargo getirildiğinde kargoyu kabul eder ve puanı Map6Round'a bildirir
 public class Map6DeliveryZone : MonoBehaviour
 {
-    [Header("Teslimat Puanı Özelliği")]
-    [SerializeField] private int score = 0;
+    [Header("Raunt Yöneticisi Özelliği")]
+    [SerializeField] private Map6Round round = null;
 
     void OnTriggerEnter(Collider other)
     {
@@ -15,14 +15,17 @@ public class Map6DeliveryZone : MonoBehaviour
         if (carry == null) return;
         if (!carry.IsCarrying()) return;
 
-        // Kargoyu teslim al, puanı ekle ve sahneden kaldır
+        // Kargoyu teslim al, puanı raunt yöneticisine gönder ve sahneden kaldır
         Map6Cargo cargo = carry.HandOver();
         if (cargo != null)
         {
             int points = cargo.Points();
-            score += points;
+            if (round != null)
+            {
+                round.AddPoints(points);
+            }
             Destroy(cargo.gameObject);
-            Debug.Log("Delivered! +" + points + " Score: " + score);
+            Debug.Log("Delivered! +" + points);
         }
     }
 }
