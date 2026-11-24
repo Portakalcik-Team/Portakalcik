@@ -418,6 +418,9 @@ public class Map10Enemy : MonoBehaviour
 
     private void Die()
     {
+        if (M10Round.Instance != null) M10Round.Instance.AddPoints(10);
+
+
         Debug.Log("[Map10Enemy] 💀 Canavar yenildi ve öldü!");
 
         // Ölüm parçalanma efekti (mandalina ile patlayan canavar parçacıkları)

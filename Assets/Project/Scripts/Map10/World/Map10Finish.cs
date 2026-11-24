@@ -157,6 +157,15 @@ public class Map10Finish : MonoBehaviour
 
         // 3. Konfeti / Kutlama Parçacıkları Saç
         SpawnCelebrationParticles(player.transform.position);
+
+        if (M10Round.Instance != null)
+{
+ int bonus = 300 + Mathf.CeilToInt(M10Round.Instance.TimeLeft) * 3
+ + collectedMandarins * 20;
+ M10Round.Instance.AddPoints(bonus);
+ M10Round.Instance.EndRound("LEVEL TAMAM!");
+}
+
     }
 
     private void SpawnCelebrationParticles(Vector3 origin)
@@ -198,7 +207,7 @@ public class Map10Finish : MonoBehaviour
 
     void OnGUI()
     {
-        if (!isFinished) return;
+        if (!isFinished || M10Round.Instance != null) return;
 
         // Arka planı hafif karartan şık gölge
         GUI.color = new Color(0f, 0f, 0f, 0.65f);
