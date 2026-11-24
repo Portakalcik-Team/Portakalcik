@@ -1,19 +1,19 @@
 using UnityEngine;
 public class Map2_FruitPickup : MonoBehaviour
 {
-    [SerializeField] private GameObject fruit;           // the Fruit child that spins and floats
-    [SerializeField] private Map2_FruitType fruitType;   // dropdown: Lemon, Tangerine or Orange
-    [SerializeField] private int amount = 2;             // how many this tree gives (balance sheet)
-    private bool picked = false;                         // each tree gives its fruit once
-    void OnTriggerEnter(Collider other)
+    // Stay, not Enter: fruit regrows, and the player may already stand under the tree when it does
+    void OnTriggerStay(Collider other)
     {
         // Who? only something that carries a fruit bag - the player
         Map2_FruitBag bag = other.GetComponent<Map2_FruitBag>();
         if (bag == null) return;
-        if (picked) return;
-        // Act: put the fruit into the bag and remove it from the tree
-        picked = true;
-        Destroy(fruit);
-        bag.Add(fruitType, amount);
+
+        // does a fruit hang on this tree right now? (the spawner grows a new one later)
+        Map2_Fruit fruit = GetComponentInChildren<Map2_Fruit>();
+        if (fruit == null) return;
+
+        // Act: put the fruit into the bag, then remove it from the tree
+        bag.Add(fruit.Data());
+        Destroy(fruit.gameObject);
     }
 }

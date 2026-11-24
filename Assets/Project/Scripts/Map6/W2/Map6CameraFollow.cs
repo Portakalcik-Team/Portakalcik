@@ -14,6 +14,12 @@ public class Map6CameraFollow : MonoBehaviour
             GameObject player = GameObject.FindWithTag("Player");
             if (player != null) target = player.transform;
         }
+
+        if (target != null)
+        {
+            transform.position = target.position + offset;
+            transform.rotation = Quaternion.Euler(pitchAngle, 0f, 0f);
+        }
     }
 
     void LateUpdate()

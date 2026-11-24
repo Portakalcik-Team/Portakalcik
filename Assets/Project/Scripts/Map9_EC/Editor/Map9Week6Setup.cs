@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public static class Map9Week6Setup
 {
     private const string DataDir = "Assets/Project/Data/Map9_EC";
-    private const string PrefabDir = "Assets/Project/Prefabs/Map9_EC";
+    private const string PrefabDir = "Assets/Project/Art/Prefabs/Map9_EC";
     private const string MatDir = "Assets/Project/Art/Map9_Materials";
 
     private const string BasePrefabPath = PrefabDir + "/M9_Portakal.prefab";

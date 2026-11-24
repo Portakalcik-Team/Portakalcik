@@ -1,36 +1,38 @@
 using UnityEngine;
-
 using UnityEngine.InputSystem;
 
 public class M10PlayerDrop : MonoBehaviour
 {
+    private Map10PlayerCarry carry;
+    private InputAction dropAction;
 
-private M10PlayerCarry carry;
+    void Start()
+    {
+        carry = GetComponent<Map10PlayerCarry>();
+        if (InputSystem.actions != null)
+        {
+            dropAction = InputSystem.actions.FindAction("Interact");
+        }
+    }
 
-private InputAction dropAction;
+    void Update()
+    {
+        if (carry == null) carry = GetComponent<Map10PlayerCarry>();
+        if (carry == null) return;
 
-void Start()
+        bool dropPressed = false;
+        if (dropAction != null && dropAction.WasPressedThisFrame())
+        {
+            dropPressed = true;
+        }
+        else if (Keyboard.current != null && Keyboard.current.qKey.wasPressedThisFrame)
+        {
+            dropPressed = true;
+        }
 
-{
-
-// our own M10PlayerCarry, on this same object
-
-carry = GetComponent<M10PlayerCarry>();
-
-// "Interact" = the E key or the gamepad's North button
-
-dropAction = InputSystem.actions.FindAction("Interact");
-
-}
-
-void Update()
-
-{
-
-// one press = one drop (DropCargo checks the hands)
-
-if (dropAction.WasPressedThisFrame()) carry.DropCargo();
-
-}
-
+        if (dropPressed)
+        {
+            carry.DropCargo();
+        }
+    }
 }
