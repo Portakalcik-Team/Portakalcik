@@ -1,12 +1,10 @@
 using UnityEngine;
 
-// Seviye 9: çıkış — portakal teslim edilir, hedef skora ulaşınca seviye biter
+// Seviye 9: çıkış — portakal teslim edilir, puanı Round'a ödenir
 public class Map9ExitZone : MonoBehaviour
 {
-    [SerializeField] private int targetScore = 5;
-
-    private int score;
-    private bool completed;   // true = bitiş mesajı yazıldı
+    // skoru artık Round tutuyor
+    [SerializeField] private Map9Round round;
 
     void OnTriggerEnter(Collider other)
     {
@@ -21,24 +19,9 @@ public class Map9ExitZone : MonoBehaviour
             return;
         }
 
-        // Act: portakalı teslim al, puanı ekle
+        // Act: portakalı teslim al, puanını Round'a öde, sahneden kaldır
         Map9Portakal portakal = carry.HandOver();
-        int puan = portakal.Points();
-        score += puan;
-        Debug.Log("Portakal teslim edildi! +" + puan + "  Skor: " + score + "/" + targetScore);
-
-        // hedefe ulaşıldı: bir kez yaz
-        if (score >= targetScore && !completed)
-        {
-            completed = true;
-            Debug.Log("Seviye 9 tamamlandı!");
-
-            // çantada ne birikti?
-            Map9Bag bag = other.GetComponent<Map9Bag>();
-            if (bag != null) Debug.Log("Çantada: " + bag.Summary());
-        }
-
-        // en sonda sahneden kaldır
+        round.AddPoints(portakal.Points());
         Destroy(portakal.gameObject);
     }
 }

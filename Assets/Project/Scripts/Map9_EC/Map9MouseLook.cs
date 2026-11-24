@@ -24,6 +24,9 @@ public class Map9MouseLook : MonoBehaviour
 
     void Update()
     {
+        // tur bitti, zaman durdu: bakış da dursun (fare Time.deltaTime kullanmaz, kendiliğinden durmaz)
+        if (Time.timeScale == 0f) return;
+
         Vector2 raw = lookAction.ReadValue<Vector2>();
 
         // fare bu karede kaç piksel kaydı; çubuk -1..+1 verir, saniyede dereceye çevrilir

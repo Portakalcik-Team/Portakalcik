@@ -22,3 +22,21 @@ Test sonuçları oyuncu denedikten sonra doldurulacak.
 Genel notlar:
 
 -
+
+## Hafta 7 – Tur süresi ve Glance Test
+
+Tur süresi: **90 sn** · Hedef skor: **5** (süre bitince skor ≥ 5 → "Seviye tamamlandı!", değilse "Süre doldu!")
+
+Hedefe ulaşınca tur bitmez: süre dolana kadar puan toplanır, en iyi skor (PlayerPrefs `Map9_best`) bunu ölçer. Soru şu: dev portakal (+3, ağır, canavarın yanında) süreye değer mi?
+
+Oyunu hiç oynamamış birine ver:
+
+| Oyuncu | Tur ortasında skoru ve süreyi bir bakışta söyledi mi? | Sorulmadan "Tekrar oyna"ya bastı mı? | 90 sn: kısa / uzun / iyi? | Skor |
+|---|---|---|---|---|
+|  |  |  |  |  |
+|  |  |  |  |  |
+|  |  |  |  |  |
+
+Genel notlar:
+
+-
