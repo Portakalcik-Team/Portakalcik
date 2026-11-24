@@ -60,13 +60,17 @@ public class M1PlayerTrigger : MonoBehaviour
     void Awake()
     {
         Stopped = false;
+        Time.timeScale = 1f;
         startTime = Time.time;
     }
 
     void Update()
     {
         if (Stopped && RestartPressed())
+        {
+            Time.timeScale = 1f;
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);   // sahne Build Settings'te olmalı
+        }
     }
 
     // Collider "Is Trigger" ise
@@ -105,6 +109,7 @@ public class M1PlayerTrigger : MonoBehaviour
 
         AddFruit(type, amount);
         Show(FruitName(type) + " toplandı! +" + amount);
+        if (M1Round.Instance != null) M1Round.Instance.AddPoints(2);   // her ağaç +2 puan
         Darken(tree);                               // ağaç kalır, sadece soluk görünür
     }
 
@@ -136,6 +141,7 @@ public class M1PlayerTrigger : MonoBehaviour
             endTime = Time.time;
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
+            if (M1Round.Instance != null) { M1Round.Instance.EndRound("OLDUN!"); return; }
             Show("ÖLDÜN!  R tuşu: yeniden başla", 999f);
             return;
         }
@@ -156,6 +162,15 @@ public class M1PlayerTrigger : MonoBehaviour
         endTime = Time.time;
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
+
+        // Tur varsa: kalan süre bonusu, kalan meyveler ve sabit 600 puan turun skoruna eklenir, panel açılır
+        if (M1Round.Instance != null)
+        {
+            int bonus = 600 + Mathf.CeilToInt(M1Round.Instance.TimeLeft) * 3 + mandalina * 20 + portakal * 30;
+            M1Round.Instance.AddPoints(bonus);
+            M1Round.Instance.EndRound("BOLUM TAMAM!");
+            return;
+        }
 
         float elapsed = endTime - startTime;
         // Denge Sistemi: 500 + seviye*100 + süre bonusu*3 + kullanılmayan mandalina*20 + portakal*30 (limon soruları henüz yok)
@@ -189,14 +204,16 @@ public class M1PlayerTrigger : MonoBehaviour
     void OnGUI()
     {
         var small = new GUIStyle(GUI.skin.label) { fontSize = 20 };
+        bool hud = M1Round.Instance != null;   // Canvas HUD varsa süre ve skor orada, burada çizme
         float t = (Stopped ? endTime : Time.time) - startTime;
-        GUI.Label(new Rect(15, 10, 900, 30), "Can: " + hp + "     Süre: " + Mathf.RoundToInt(t) + " / " + Mathf.RoundToInt(parTime) + " sn", small);
+        if (!hud) GUI.Label(new Rect(15, 10, 900, 30), "Can: " + hp + "     Süre: " + Mathf.RoundToInt(t) + " / " + Mathf.RoundToInt(parTime) + " sn", small);
 
         string[] counts = { mandalina.ToString(), portakal.ToString(), limon.ToString() };
         string line = "";
         for (int i = 0; i < 3; i++)
             line += (i == selectedFruit ? "[" : " ") + (i + 1) + " " + FruitNames[i] + ": " + counts[i] + (i == selectedFruit ? "]" : " ") + "   ";
-        GUI.Label(new Rect(15, 38, 900, 30), line, small);
+        if (hud) line = "Can: " + hp + "     " + line;
+        GUI.Label(new Rect(15, hud ? 95 : 38, 1200, 30), line, small);
 
         // Nişangah
         if (!Stopped) GUI.Label(new Rect(Screen.width / 2f - 6f, Screen.height / 2f - 14f, 30, 30), "+", small);
@@ -208,6 +225,6 @@ public class M1PlayerTrigger : MonoBehaviour
             alignment = TextAnchor.MiddleCenter,
             fontStyle = FontStyle.Bold
         };
-        GUI.Label(new Rect(0, 80, Screen.width, 60), message, style);
+        GUI.Label(new Rect(0, hud ? 170 : 80, Screen.width, 60), message, style);
     }
 }

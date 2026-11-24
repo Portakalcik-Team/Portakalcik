@@ -12,8 +12,6 @@ public class M1FruitPickup : MonoBehaviour
 
     public static int TotalPoints;   // bu oyundaki toplam meyve puanı
 
-    void Awake() { TotalPoints = TotalPoints; }
-
     // Spawner yüksekte (ağaç tepesinde) doğurur, meyve yere düşer
     void Update()
     {
@@ -42,6 +40,7 @@ public class M1FruitPickup : MonoBehaviour
 
         inv.AddFruit(type.fruitIndex, type.amount);
         TotalPoints += type.points;
+        if (M1Round.Instance != null) M1Round.Instance.AddPoints(type.points);   // turun skoruna da ekle
 
         string msg = "+" + type.points + " puan (" + type.displayName + ")  Toplam: " + TotalPoints;
         if (type.slowSeconds > 0f)
