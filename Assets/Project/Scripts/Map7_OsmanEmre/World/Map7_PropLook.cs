@@ -7,6 +7,7 @@ public enum Map7_PropKind { Wall, Door, Exit }
 public class Map7_PropLook : MonoBehaviour
 {
     [SerializeField] private Map7_PropKind kind = Map7_PropKind.Wall;
+    public Map7_PropKind Kind => kind;
 
     private Transform visual;
     private Transform orbs;      // çıkıştaki dönen küreler

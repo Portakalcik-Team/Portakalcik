@@ -117,6 +117,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff4def1f9e77a44438ef685375a8a137, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Cargo
+  type: {fileID: 11400000, guid: 461040f21df4ac241ac7e960759d405d, type: 2}
   dropForce: 3
   pickUpDelay: 0.5
 --- !u!1 &7209082936365285552

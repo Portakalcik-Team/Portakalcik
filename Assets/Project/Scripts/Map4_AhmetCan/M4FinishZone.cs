@@ -2,7 +2,8 @@ using UnityEngine;                                                          // U
 
 public class M4FinishZone : MonoBehaviour                                   // Çıkış bölgesine eklenen script; puanı teslim alır
 {
-    private int score;                                                      // Teslim edilen toplam puan; her Play'de 0'dan başlar
+    // skoru artık Round tutuyor
+    [SerializeField] private M4Round round;                                 // Sahnedeki Round nesnesi (Inspector'dan atanır)
 
     void OnTriggerEnter(Collider other)                                     // Bir şey bu tetikleyici (trigger) alana girince çalışır
     {
@@ -10,7 +11,6 @@ public class M4FinishZone : MonoBehaviour                                   // �
         if (load == null) return;                                           // Yoksa oyuncu değildir, hiçbir şey yapma
 
         int delivered = load.HandOver();                                    // Oyuncunun taşıdığı puanı al (oyuncunun yükü sıfırlanır)
-        score += delivered;                                                 // Teslim edilen puanı toplam skora ekle
-        Debug.Log("Çıkışa Ulaştınız! +" + delivered + "  Skor: " + score);  // Konsola teslim edilen puanı ve toplam skoru yaz
+        round.AddPoints(delivered);                                         // Teslim edilen puanı Round'a ver; HUD gösterir
     }
 }

@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 // Oyun başlayınca (MapGenerator haritayı kurduktan sonra) çalışır:
-//  - tüm ağaçlara "normal" meyve verisini atar,
-//  - DÜŞMANA EN YAKIN ağaçlardan birkaçını Altın Portakal ağacına çevirir (büyük ödül, bedeli: tehlike + yavaşlama),
-//  - oyuncuya skor sistemini ekler.
+//  - zamanın aktığından emin olur ve sahnedeki Map7_Round + Canvas HUD'u hazırlar (W07),
+//  - çıkış objesine Map7_ExitZone bağlar (W07),
+//  - tüm ağaçlara "normal" meyve verisini atar ve düşmana en yakın ağaçları Altın Portakal ağacına çevirir (W06).
 // Harita yazısına ve MapGenerator'a dokunmaz.
 public class Map7_LevelSetup : MonoBehaviour
 {
@@ -17,16 +17,29 @@ public class Map7_LevelSetup : MonoBehaviour
 
     IEnumerator Start()
     {
+        Time.timeScale = 1f;   // önceki turdan donuk kaldıysa düzelt
         if (GetComponent<Map7_Score>() == null) gameObject.AddComponent<Map7_Score>();
+
+        // Map7_Round + Canvas HUD sahnede yoksa kur
+        Map7_Round round = Map7_Round.EnsureInScene();
 
         // MapGenerator ve ağaçların Start'ları bitsin diye iki kare bekle
         yield return null;
         yield return null;
-        Setup();
+        Setup(round);
     }
 
-    void Setup()
+    void Setup(Map7_Round round)
     {
+        // Çıkış objesine Map7_ExitZone bağla (oyuncu ulaşınca oyun bitsin)
+        foreach (Map7_PropLook prop in FindObjectsByType<Map7_PropLook>(FindObjectsSortMode.None))
+        {
+            if (prop.Kind != Map7_PropKind.Exit) continue;
+            Map7_ExitZone ez = prop.GetComponent<Map7_ExitZone>();
+            if (ez == null) ez = prop.gameObject.AddComponent<Map7_ExitZone>();
+            ez.Configure(round);
+        }
+
         Map7_FruitPickup[] all = FindObjectsByType<Map7_FruitPickup>(FindObjectsSortMode.None);
         Map7_EnemyLook[] enemies = FindObjectsByType<Map7_EnemyLook>(FindObjectsSortMode.None);
 

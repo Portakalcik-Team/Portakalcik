@@ -11,8 +11,8 @@ public class Map2_ExitZone : MonoBehaviour
         if (bag == null) return;
         if (finished) return;
 
-        // Act: the map is done - oranges left in the bag count as bonus points later
+        // Act: the map is done - show the score and the oranges left in the bag
         finished = true;
-        Debug.Log("Map 2 complete! Oranges: " + bag.Count(Map2_FruitType.Orange));
+        Debug.Log("Map 2 complete! Score: " + bag.Score() + "   Oranges: " + bag.Count(Map2_FruitType.Orange));
     }
 }

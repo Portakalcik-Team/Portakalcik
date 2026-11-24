@@ -37,6 +37,8 @@ public class Map7_FruitLauncher : MonoBehaviour
 
     void Update()
     {
+        if (Time.timeScale == 0f) return;
+
         if (cam == null)
         {
             Camera c = Camera.main;
@@ -262,6 +264,8 @@ public class Map7_FruitLauncher : MonoBehaviour
 
     void OnGUI()
     {
+        if (Time.timeScale == 0f) return;
+
         // Nişangâh
         float cx = Screen.width / 2f, cy = Screen.height / 2f;
         GUI.color = new Color(1f, 1f, 1f, 0.85f);

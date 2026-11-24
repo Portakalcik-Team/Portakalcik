@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class Map6Bobber : MonoBehaviour
 {
+    [Header("Süzülme (Bobber) Özelliği")]
     [SerializeField] private float bobHeight = 0.25f; // Yukarı ve aşağı hareket mesafesi (metre)
     [SerializeField] private float bobSpeed = 2f;     // Süzülme hızı
     private Vector3 startLocalPosition;               // Başlangıç konumunu hatırlar

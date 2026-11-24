@@ -264,6 +264,8 @@ public class Map7_FruitPickup : MonoBehaviour
 
     void OnGUI()
     {
+        if (Time.timeScale == 0f) return;
+
         string text = null;
         string name = (IsGolden() ? "Altın " : "") + fruitType;
         if (messageTimer > 0f) text = message;

@@ -5,6 +5,14 @@ public class Map0PlayerCarry : MonoBehaviour
     [SerializeField] private Transform carryPoint; // başın üstündeki nokta
 
     private Map0Cargo carried; // null = eller boş
+    private Rigidbody rb;      // oyuncunun gövdesi
+    private float baseMass;    // eller boşken kütlesi
+
+    void Start()
+    {
+        rb = GetComponent<Rigidbody>();
+        baseMass = rb.mass;
+    }
 
     public bool IsCarrying()
     {
@@ -21,6 +29,7 @@ public class Map0PlayerCarry : MonoBehaviour
 
         carried = cargo;
         cargo.PickUp(carryPoint);
+        rb.mass = baseMass + cargo.Weight(); // ağır oyuncu
     }
 
     // tehlikeler bunu çağırır
@@ -30,6 +39,7 @@ public class Map0PlayerCarry : MonoBehaviour
 
         carried.Drop();
         carried = null;
+        rb.mass = baseMass; // yine hafif
     }
 
     // teslim alanı bunu çağırır
@@ -37,6 +47,7 @@ public class Map0PlayerCarry : MonoBehaviour
     {
         Map0Cargo cargo = carried;
         carried = null; // eller yine boş
+        rb.mass = baseMass;
         return cargo;
     }
 }

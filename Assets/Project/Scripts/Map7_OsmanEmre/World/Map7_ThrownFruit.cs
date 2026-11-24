@@ -134,6 +134,7 @@ public class Map7_ThrownFruit : MonoBehaviour
 
     void OnGUI()
     {
+        if (Time.timeScale == 0f) return;
         if (!landed || player == null) return;
         if (Vector3.Distance(transform.position, player.position) > PickupRange) return;
 

@@ -74,6 +74,7 @@ public class Map7_Door : MonoBehaviour
 
     void OnGUI()
     {
+        if (Time.timeScale == 0f) return;
         if (messageTimer <= 0f || string.IsNullOrEmpty(message)) return;
 
         GUIStyle style = new GUIStyle(GUI.skin.label);

@@ -4,7 +4,8 @@ using UnityEngine.InputSystem;
 // Oyuncunun birinci şahıs (FPS) fare bakışını ve gövde yönelimini yönetir
 public class Map6MouseLook : MonoBehaviour
 {
-    [SerializeField] private Transform cameraTransform;   // Player'ın çocuğu olan Main Camera
+    [Header("FPS Kamera ve Bakış Özelliği")]
+    [SerializeField] private Transform cameraTransform;      // Player'ın çocuğu olan FPS kamera noktası (FPSCameraAnchor)
     [SerializeField] private float mouseSensitivity = 0.15f; // Piksel başına açı
     [SerializeField] private float stickSpeed = 180f;        // Gamepad sağ çubuk hız derecesi
     [SerializeField] private float maxPitch = 80f;           // Yukarı/aşağı bakış limiti
@@ -37,8 +38,11 @@ public class Map6MouseLook : MonoBehaviour
         yaw = rb != null ? rb.rotation.eulerAngles.y : transform.eulerAngles.y;
 
         // Fare imlecini kilitle ve gizle
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        if (enabled)
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
     }
 
     void OnDestroy()
@@ -103,5 +107,17 @@ public class Map6MouseLook : MonoBehaviour
         {
             transform.rotation = targetRot;
         }
+    }
+
+    public void SyncYawFromBody()
+    {
+        yaw = rb != null ? rb.rotation.eulerAngles.y : transform.eulerAngles.y;
+    }
+
+    public void SetMouseLookEnabled(bool isEnabled)
+    {
+        enabled = isEnabled;
+        Cursor.lockState = isEnabled ? CursorLockMode.Locked : CursorLockMode.None;
+        Cursor.visible = !isEnabled;
     }
 }
