@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Map0DeliveryZone : MonoBehaviour
 {
-    private int score; // şimdiye kadarki puan
+    [SerializeField] private Map0Round round; // puanı tutan tur
 
     void OnTriggerEnter(Collider other)
     {
@@ -13,8 +13,8 @@ public class Map0DeliveryZone : MonoBehaviour
 
         // Yap: kargoyu al ve sahneden sil
         Map0Cargo cargo = carry.HandOver();
-        score += cargo.Points();
-        Debug.Log("Teslim edildi! +" + cargo.Points() + "   Skor: " + score);
+        round.AddPoints(cargo.Points());
+        Debug.Log("Teslim edildi! +" + cargo.Points());
         Destroy(cargo.gameObject);
     }
 }

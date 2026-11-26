@@ -112,6 +112,21 @@ Elle konan üç portakal (`Map0_Week3_Kargo_01–03`) yerine aynı yerlerde üç
 |---|---|---|---|
 | | | | |
 
+## 7. hafta: HUD, 90 saniyelik tur, oyun sonu, Tekrar oyna
+
+Kurulum: **Map0 → Hafta 7 HUD ve Oyun Sonunu Kur**, sonra kaydet. TMP Essentials yoksa menü önce onları içeri alır, bir kez daha çalıştır.
+
+- **HUD (`Map0_Week7_HUD`):** sol üstte skor, üst ortada kalan süre. Kutular eğitim kartıyla aynı stilde (koyu kart, krem yazı, portakal şerit), böylece zemin açık da koyu da olsa okunuyor. Köşelere çapalı, 4:3'te de yerinde kalıyor.
+- **Tur (`Map0Round`, `Map0_Week7_Round`):** 90 s geri sayım. Puanı artık `Map0DeliveryZone` değil tur tutuyor (`AddPoints`). Süre bitince `EndRound`: `Time.timeScale = 0`, panel açılır.
+- **Oyun sonu (`Map0GameOver`):** `Süre doldu! / Skor N / En iyi M`. En iyi skor `PlayerPrefs`'te `Map0_best` anahtarıyla (diğer haritalarla karışmasın). **Tekrar oyna** önce zamanı başlatır, sonra sahneyi yeniden yükler.
+- **Sahne listesi:** `Map_0` build listesine eklendi, yoksa `LoadScene` hata veriyor.
+
+### Glance test
+
+| Ortada "skorun kaç, ne kadar kaldı?" | Tekrar oyna'ya kendiliğinden bastı mı? | 90 s kısa / uzun / tam? |
+|---|---|---|
+| | | |
+
 ## Commit notu
 
 W01–W04 commitleri **geç** gönderildi.
